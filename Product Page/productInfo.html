@@ -80,8 +80,8 @@
                 class="material-symbols-outlined text-primary dark:text-primary-fixed-dim"
                 >shopping_bag</span
               >
-              <span
-                class="absolute -top-1 -right-1 bg-secondary text-on-secondary text-[10px] rounded-full w-4 h-4 flex items-center justify-center"
+              <span id="cart-badge"
+                class="absolute -top-1 -right-1 bg-secondary text-on-secondary text-[10px] rounded-full w-4 h-4 flex items-center justify-center transition-transform duration-300"
                 >2</span
               >
             </button>
@@ -113,15 +113,15 @@
             >
               New Release
             </div>
-            <img
-              class="w-full h-full object-cover"
+            <img id="main-image"
+              class="w-full h-full object-cover transition-opacity duration-300"
               data-alt="A professional studio product shot of sleek, matte black over-ear headphones with silver accents. The lighting is soft and directional, highlighting the premium texture of the leather ear cushions. The background is a clean, minimalist light gray, emphasizing the sophisticated tech aesthetic of the product. The mood is high-end and modern, following a clean corporate minimalist design language."
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqjXYhXW6-iuHi6R6jI2FR-gnDd7Fd7DnR3imqZ5xL87z3anhjTHmwbQtNf3BcNqFmhTJ0ayOsdZtk3SFniInyk8Fi8r-L8PGjEOb2O2697jLTn5wOoiJiejq_wPYjYl-x5DBJD-KKI8jGxkyOqUFkrrbFa-CaRV7sbnTTmpPOKhIBgP6zUZkjfNrP3dASpSorCbjZBI0wNpjZiu3VedaC3lQjYop1HeUmFOaWkn5aftQtvs0__w1HvfkXGBHRthdv7nNAkH6Lfg"
             />
           </div>
           <div class="grid grid-cols-4 gap-4">
             <div
-              class="bg-surface-container-lowest rounded-lg overflow-hidden custom-shadow aspect-square border-2 border-primary cursor-pointer"
+              class="thumbnail-btn bg-surface-container-lowest rounded-lg overflow-hidden custom-shadow aspect-square border-2 border-primary cursor-pointer transition-all"
             >
               <img
                 class="w-full h-full object-cover"
@@ -130,7 +130,7 @@
               />
             </div>
             <div
-              class="bg-surface-container-lowest rounded-lg overflow-hidden custom-shadow aspect-square cursor-pointer hover:opacity-80 transition-opacity"
+              class="thumbnail-btn bg-surface-container-lowest rounded-lg overflow-hidden custom-shadow aspect-square border-2 border-transparent hover:border-primary cursor-pointer hover:opacity-80 transition-all"
             >
               <img
                 class="w-full h-full object-cover"
@@ -139,7 +139,7 @@
               />
             </div>
             <div
-              class="bg-surface-container-lowest rounded-lg overflow-hidden custom-shadow aspect-square cursor-pointer hover:opacity-80 transition-opacity"
+              class="thumbnail-btn bg-surface-container-lowest rounded-lg overflow-hidden custom-shadow aspect-square border-2 border-transparent hover:border-primary cursor-pointer hover:opacity-80 transition-all"
             >
               <img
                 class="w-full h-full object-cover"
@@ -195,7 +195,7 @@
               >4.8 (124 reviews)</span
             >
           </div>
-          <div class="text-headline-lg font-headline-lg text-primary mb-8">
+          <div id="product-price" class="text-headline-lg font-headline-lg text-primary mb-8 transition-all">
             $299.00
           </div>
           <p
@@ -212,23 +212,23 @@
                 class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider block mb-4"
                 >Color</label
               >
-              <div class="flex gap-3">
-                <button
-                  class="w-10 h-10 rounded-full border-2 border-primary p-0.5 ring-2 ring-offset-2 ring-transparent"
+              <div class="flex gap-3" id="color-options">
+                <button data-color="black"
+                  class="color-btn w-10 h-10 rounded-full border-2 border-primary p-0.5 ring-2 ring-offset-2 ring-transparent transition-all"
                 >
                   <span
                     class="block w-full h-full rounded-full bg-on-background"
                   ></span>
                 </button>
-                <button
-                  class="w-10 h-10 rounded-full border-2 border-transparent hover:border-outline-variant p-0.5"
+                <button data-color="silver"
+                  class="color-btn w-10 h-10 rounded-full border-2 border-transparent hover:border-outline-variant p-0.5 transition-all"
                 >
                   <span
                     class="block w-full h-full rounded-full bg-outline-variant"
                   ></span>
                 </button>
-                <button
-                  class="w-10 h-10 rounded-full border-2 border-transparent hover:border-outline-variant p-0.5"
+                <button data-color="purple"
+                  class="color-btn w-10 h-10 rounded-full border-2 border-transparent hover:border-outline-variant p-0.5 transition-all"
                 >
                   <span
                     class="block w-full h-full rounded-full bg-primary-container"
@@ -241,14 +241,14 @@
                 class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider block mb-4"
                 >Model</label
               >
-              <div class="grid grid-cols-2 gap-4">
-                <button
-                  class="py-3 px-6 border-2 border-primary rounded-xl text-label-md font-label-md bg-primary/5 text-primary"
+              <div class="grid grid-cols-2 gap-4" id="model-options">
+                <button data-model="Standard" data-price="299.00"
+                  class="model-btn py-3 px-6 border-2 border-primary rounded-xl text-label-md font-label-md bg-primary/5 text-primary transition-colors"
                 >
                   Standard Edition
                 </button>
-                <button
-                  class="py-3 px-6 border-2 border-outline-variant rounded-xl text-label-md font-label-md text-on-surface-variant hover:border-primary transition-colors"
+                <button data-model="Pro" data-price="349.00"
+                  class="model-btn py-3 px-6 border-2 border-outline-variant rounded-xl text-label-md font-label-md text-on-surface-variant hover:border-primary hover:text-primary transition-colors"
                 >
                   Pro Signature
                 </button>
@@ -262,14 +262,14 @@
               <div
                 class="flex items-center w-32 border border-outline-variant rounded-full p-1 bg-surface-container-low"
               >
-                <button
-                  class="w-8 h-8 flex items-center justify-center hover:text-primary"
+                <button id="qty-minus"
+                  class="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors"
                 >
                   <span class="material-symbols-outlined">remove</span>
                 </button>
-                <span class="flex-1 text-center font-bold">1</span>
-                <button
-                  class="w-8 h-8 flex items-center justify-center hover:text-primary"
+                <span id="qty-value" class="flex-1 text-center font-bold">1</span>
+                <button id="qty-plus"
+                  class="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors"
                 >
                   <span class="material-symbols-outlined">add</span>
                 </button>
@@ -278,10 +278,10 @@
           </div>
           <!-- Actions -->
           <div class="flex flex-col gap-4">
-            <button
-              class="w-full bg-primary text-on-primary font-headline-md py-5 rounded-full custom-shadow scale-100 active:scale-95 transition-all"
+            <button id="add-to-cart-btn"
+              class="w-full bg-primary text-on-primary font-headline-md py-5 rounded-full custom-shadow scale-100 active:scale-95 transition-all flex justify-center items-center gap-2"
             >
-              Add to Cart
+              <span id="add-to-cart-text">Add to Cart</span>
             </button>
             <button
               class="w-full border-2 border-on-background text-on-background font-headline-md py-5 rounded-full hover:bg-on-background hover:text-background transition-all"
@@ -311,24 +311,24 @@
       </div>
       <!-- Tabs Section -->
       <div class="mt-32">
-        <div class="flex border-b border-outline-variant mb-12">
-          <button
-            class="px-8 py-4 text-headline-md border-b-2 border-primary text-primary"
+        <div class="flex border-b border-outline-variant mb-12" id="tabs-nav">
+          <button data-tab="reviews"
+            class="tab-btn px-8 py-4 text-headline-md border-b-2 border-primary text-primary transition-colors"
           >
             Reviews
           </button>
-          <button
-            class="px-8 py-4 text-headline-md text-on-surface-variant hover:text-primary transition-colors"
+          <button data-tab="specs"
+            class="tab-btn px-8 py-4 text-headline-md text-on-surface-variant hover:text-primary border-b-2 border-transparent transition-colors"
           >
             Product Specs
           </button>
-          <button
-            class="px-8 py-4 text-headline-md text-on-surface-variant hover:text-primary transition-colors"
+          <button data-tab="faq"
+            class="tab-btn px-8 py-4 text-headline-md text-on-surface-variant hover:text-primary border-b-2 border-transparent transition-colors"
           >
             FAQ
           </button>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 tab-content" id="tab-reviews">
           <div class="space-y-8">
             <!-- Review 1 -->
             <div
@@ -464,6 +464,34 @@
             >
               Write a Review
             </button>
+          </div>
+        </div>
+        <div class="hidden tab-content" id="tab-specs">
+          <div class="bg-surface-container-lowest p-8 rounded-2xl custom-shadow text-body-lg text-on-surface-variant">
+            <h3 class="font-bold text-on-surface mb-4">Technical Specifications</h3>
+            <ul class="list-disc pl-6 space-y-2">
+              <li>Driver Size: 40mm dynamic drivers</li>
+              <li>Frequency Response: 20Hz - 20kHz</li>
+              <li>Battery Life: Up to 40 hours with ANC on</li>
+              <li>Charging: USB-C fast charging (15 mins = 4 hours playback)</li>
+              <li>Connectivity: Bluetooth 5.2, multipoint support</li>
+              <li>Weight: 250g</li>
+            </ul>
+          </div>
+        </div>
+        <div class="hidden tab-content" id="tab-faq">
+          <div class="bg-surface-container-lowest p-8 rounded-2xl custom-shadow text-body-lg text-on-surface-variant">
+            <h3 class="font-bold text-on-surface mb-4">Frequently Asked Questions</h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-bold text-on-surface">Are they water-resistant?</h4>
+                <p>The Aura Elite headphones feature an IPX4 rating, meaning they can withstand splashes and light rain, but should not be submerged.</p>
+              </div>
+              <div>
+                <h4 class="font-bold text-on-surface">Does the ANC work without playing music?</h4>
+                <p>Yes, you can activate Active Noise Cancellation even when no audio is playing to enjoy a quiet environment.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
