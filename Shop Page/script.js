@@ -1,107 +1,46 @@
-window.tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          "background": "#f9f9ff",
-          "inverse-surface": "#293040",
-          "on-background": "#141b2b",
-          "surface-variant": "#dce2f7",
-          "on-primary-fixed-variant": "#5516be",
-          "outline-variant": "#cbc3d7",
-          "on-tertiary-fixed-variant": "#653e00",
-          "inverse-on-surface": "#edf0ff",
-          "secondary-container": "#fd56a7",
-          "surface-container-lowest": "#ffffff",
-          "on-secondary": "#ffffff",
-          "secondary-fixed": "#ffd9e4",
-          "on-error": "#ffffff",
-          "tertiary-container": "#a36700",
-          "error": "#ba1a1a",
-          "outline": "#7b7486",
-          "tertiary": "#825100",
-          "on-surface": "#141b2b",
-          "on-secondary-fixed": "#3e0022",
-          "surface-container-low": "#f1f3ff",
-          "on-primary-container": "#fffbff",
-          "on-secondary-container": "#600037",
-          "on-tertiary-fixed": "#2a1700",
-          "surface-container": "#e9edff",
-          "surface-container-high": "#e1e8fd",
-          "secondary-fixed-dim": "#ffb0cd",
-          "on-secondary-fixed-variant": "#8c0053",
-          "tertiary-fixed": "#ffddb8",
-          "on-tertiary": "#ffffff",
-          "surface-bright": "#f9f9ff",
-          "primary-container": "#8455ef",
-          "primary-fixed-dim": "#d0bcff",
-          "inverse-primary": "#d0bcff",
-          "surface-dim": "#d3daef",
-          "on-error-container": "#93000a",
-          "on-primary": "#ffffff",
-          "tertiary-fixed-dim": "#ffb95f",
-          "on-surface-variant": "#494454",
-          "primary-fixed": "#e9ddff",
-          "on-tertiary-container": "#fffbff",
-          "surface": "#f9f9ff",
-          "secondary": "#b4136d",
-          "error-container": "#ffdad6",
-          "surface-tint": "#6d3bd7",
-          "on-primary-fixed": "#23005c",
-          "surface-container-highest": "#dce2f7",
-          "primary": "#6b38d4"
-        },
-        borderRadius: {
-          "DEFAULT": "0.25rem",
-          "lg": "0.5rem",
-          "xl": "0.75rem",
-          "full": "9999px"
-        },
-        spacing: {
-          "unit": "8px",
-          "margin-mobile": "16px",
-          "container-max": "1280px",
-          "gutter": "24px",
-          "margin-desktop": "40px"
-        },
-        fontFamily: {
-          "headline-md": ["Inter"],
-          "label-sm": ["Inter"],
-          "label-md": ["Inter"],
-          "headline-lg": ["Inter"],
-          "body-lg": ["Inter"],
-          "body-md": ["Inter"],
-          "display-lg": ["Inter"],
-          "display-lg-mobile": ["Inter"]
-        },
-        fontSize: {
-          "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
-          "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
-          "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
-          "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-          "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
-          "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
-          "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-          "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
-        }
+document.addEventListener("DOMContentLoaded", () => {
+  const priceSlider = document.getElementById("price-slider");
+  const priceDisplay = document.getElementById("current-price-display");
+
+  if (priceSlider && priceDisplay) {
+    priceSlider.addEventListener("input", (e) => {
+      const value = e.target.value;
+      priceDisplay.textContent = `$${value}`;
+      priceDisplay.classList.add("scale-105", "opacity-90");
+      setTimeout(() => {
+        priceDisplay.classList.remove("scale-105", "opacity-90");
+      }, 100);
+    });
+  }
+
+  document.querySelectorAll(".wishlist-btn").forEach((btn) => {
+    const icon = btn.querySelector(".wishlist-icon");
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+
+      icon.classList.toggle("active");
+      icon.classList.toggle("text-red-500");
+      icon.classList.toggle("text-on-background");
+      icon.classList.toggle("scale-110");
+
+      const isActive = icon.classList.contains("active");
+
+      if (isActive) {
+        icon.style.fontVariationSettings = "'FILL' 1";
+        setTimeout(() => icon.classList.remove("scale-110"), 200);
+      } else {
+        icon.style.fontVariationSettings = "'FILL' 0";
+        icon.classList.remove("scale-110");
       }
-    }
-  };
 
-document.querySelectorAll(".wishlist-btn").forEach((btn) => {
-  const icon = btn.querySelector(".wishlist-icon");
-
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    icon.classList.toggle("active");
-    icon.classList.toggle("text-red-500");
-    icon.classList.toggle("text-on-background");
-    icon.classList.toggle("scale-110");
-    const isActive = icon.classList.contains("active");
-    btn.setAttribute("aria-pressed", String(isActive));
-    btn.setAttribute(
-      "aria-label",
-      isActive ? "Remove from wishlist" : "Add to wishlist"
-    );
+      btn.setAttribute("aria-pressed", String(isActive));
+      btn.setAttribute(
+        "aria-label",
+        isActive ? "Remove from wishlist" : "Add to wishlist"
+      );
+      btn.blur();
+    });
   });
 });
