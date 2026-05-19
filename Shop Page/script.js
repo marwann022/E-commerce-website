@@ -72,4 +72,19 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.blur();
     });
   });
+
+
+  const ratingButtons = document.querySelectorAll(".rating-btn");
+  ratingButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      ratingButtons.forEach((button) => {
+        button.classList.remove("text-tertiary", "opacity-100", "scale-105", "bg-surface-variant/30");
+        button.classList.add("text-tertiary/70", "opacity-70", "scale-100");
+      });
+
+      btn.classList.remove("text-tertiary/70", "opacity-70", "scale-100");
+      btn.classList.add("text-tertiary", "opacity-100", "scale-105", "bg-surface-variant/30");
+      btn.blur();
+    });
+  });
 });
