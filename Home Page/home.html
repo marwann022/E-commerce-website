@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AURA — Minimalist Tech</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+            rel="stylesheet">
+        <script
+            src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "background": "#f9f9ff",
+                        "inverse-surface": "#293040",
+                        "on-background": "#141b2b",
+                        "surface-variant": "#dce2f7",
+                        "on-primary-fixed-variant": "#5516be",
+                        "outline-variant": "#cbc3d7",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "inverse-on-surface": "#edf0ff",
+                        "secondary-container": "#fd56a7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#ffd9e4",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#a36700",
+                        "error": "#ba1a1a",
+                        "outline": "#7b7486",
+                        "tertiary": "#825100",
+                        "on-surface": "#141b2b",
+                        "on-secondary-fixed": "#3e0022",
+                        "surface-container-low": "#f1f3ff",
+                        "on-primary-container": "#fffbff",
+                        "on-secondary-container": "#600037",
+                        "on-tertiary-fixed": "#2a1700",
+                        "surface-container": "#e9edff",
+                        "surface-container-high": "#e1e8fd",
+                        "secondary-fixed-dim": "#ffb0cd",
+                        "on-secondary-fixed-variant": "#8c0053",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "primary-container": "#8455ef",
+                        "primary-fixed-dim": "#d0bcff",
+                        "inverse-primary": "#d0bcff",
+                        "surface-dim": "#d3daef",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-surface-variant": "#494454",
+                        "primary-fixed": "#e9ddff",
+                        "on-tertiary-container": "#fffbff",
+                        "surface": "#f9f9ff",
+                        "secondary": "#b4136d",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#6d3bd7",
+                        "on-primary-fixed": "#23005c",
+                        "surface-container-highest": "#dce2f7",
+                        "primary": "#6b38d4"
+                    },
+                    maxWidth: {
+                        "container-max": "1280px"
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"]
+                    },
+                    fontSize: {
+                        "display-lg": ["48px", {
+                            lineHeight: "56px",
+                            letterSpacing: "-0.02em",
+                            fontWeight: "700"
+                        }],
+                        "display-lg-mobile": ["36px", {
+                            lineHeight: "44px",
+                            letterSpacing: "-0.02em",
+                            fontWeight: "700"
+                        }],
+                        "headline-lg": ["32px", {
+                            lineHeight: "40px",
+                            letterSpacing: "-0.01em",
+                            fontWeight: "600"
+                        }],
+                        "headline-md": ["24px", {
+                            lineHeight: "32px",
+                            fontWeight: "600"
+                        }],
+                        "body-lg": ["18px", {
+                            lineHeight: "28px",
+                            fontWeight: "400"
+                        }],
+                        "body-md": ["16px", {
+                            lineHeight: "24px",
+                            fontWeight: "400"
+                        }],
+                        "label-md": ["14px", {
+                            lineHeight: "20px",
+                            letterSpacing: "0.01em",
+                            fontWeight: "500"
+                        }],
+                        "label-sm": ["12px", {
+                            lineHeight: "16px",
+                            fontWeight: "600"
+                        }]
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "container-max": "1280px"
+                    }
+                }
+            }
+        }
+    </script>
+        <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+    </head>
+
+    <body
+        class="bg-background text-on-background antialiased overflow-x-hidden">
+
+        <!-- Announcement Bar -->
+        <div
+            class="w-full bg-inverse-surface text-inverse-on-surface py-2 text-center">
+            <p class="text-label-md tracking-wider">Free shipping on orders over
+                $150
+            </p>
+        </div>
+
+        <!-- Header / TopAppBar -->
+        <header
+            class="bg-surface/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+            <div
+                class="flex flex-col w-full max-w-container-max mx-auto px-4 md:px-margin-desktop py-4">
+                <div class="flex items-center justify-between gap-gutter">
+
+                    <!-- Logo -->
+                    <div
+                        class="text-headline-lg font-bold tracking-tighter text-on-background">AURA</div>
+
+                    <!-- Desktop Nav -->
+                    <nav class="hidden md:flex items-center gap-8">
+                        <a href="../Shop Page/shop.html"
+                            class="text-primary border-b-2 border-primary pb-1 text-label-md">Shop</a>
+                        <a href="../Shop Page/arrival.html"
+                            class="text-on-surface-variant hover:text-primary transition-colors text-label-md">New
+                            Arrivals</a>
+                        <a href="../Shop Page/sale.html"
+                            class="text-on-surface-variant hover:text-primary transition-colors text-label-md">Sale</a>
+                        <a href="../Shop Page/about.html"
+                            class="text-on-surface-variant hover:text-primary transition-colors text-label-md">About</a>
+                    </nav>
+
+                    <!-- Search + Icons -->
+                    <div class="flex items-center gap-4 md:gap-6">
+                        <div
+                            class="hidden lg:flex items-center bg-surface-container rounded-full px-4 py-2 gap-2">
+                            <span class="material-symbols-outlined text-outline"
+                                aria-hidden="true">search</span>
+                            <input type="text" placeholder="Search..."
+                                aria-label="Search"
+                                class="bg-transparent border-none focus:ring-0 text-label-md w-48 outline-none">
+                        </div>
+                        <div
+                            class="flex items-center gap-3 md:gap-4 text-primary">
+                            <button aria-label="Account"
+                                class="scale-100 active:scale-95 transition-transform duration-200 hover:opacity-80">
+                                <span
+                                    class="material-symbols-outlined">person</span>
+                            </button>
+                            <button aria-label="Wishlist"
+                                class="scale-100 active:scale-95 transition-transform duration-200 hover:opacity-80">
+                                <span
+                                    class="material-symbols-outlined">favorite</span>
+                            </button>
+                            <button aria-label="Shopping bag"
+                                class="scale-100 active:scale-95 transition-transform duration-200 hover:opacity-80">
+                                <span
+                                    class="material-symbols-outlined">shopping_bag</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+        <main>
+
+            <!-- Hero Banner -->
+            <section
+                class="relative w-full h-[600px] md:h-[870px] flex items-center overflow-hidden">
+                <img
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZIBwPvxIo3KbIYC5FKmVt7GUOpeHw1M5vJfmHIcJ4gofuOvs4yj56SjeEPkKUXPnkFcyzKaWNTvMv1THTpRUx_SupyfbCMJ__XdgqEuvx__Ak2NJHT5q4rmG6lhRl6gCPiodS176_ISwODTKE-xLw-CTZDhsPsSGPKyu-0D9NTLlhqcOThdTqhBHZN7XaECQeUQwCRhPWPgXwD3285_iHMHDubmMd6wmjtVsLo3Gz8Jrq0Jdqcejk0TJqEMilHVN5i4BrLK2q9A"
+                    alt="Premium minimalist tech lifestyle shot with a sleek smartphone on a marble desk"
+                    class="absolute inset-0 w-full h-full object-cover">
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-background/60 via-background/20 to-transparent"></div>
+                <div
+                    class="relative max-w-container-max mx-auto px-4 md:px-margin-desktop w-full">
+                    <div class="max-w-2xl">
+                        <h1
+                            class="text-display-lg-mobile md:text-display-lg text-on-background mb-6 leading-tight">
+                            Define Your<br>
+                            <span class="text-primary">Digital Identity</span>
+                        </h1>
+                        <p
+                            class="text-body-lg text-on-surface-variant mb-10 max-w-md">
+                            Experience the intersection of high-fashion
+                            aesthetics and precision engineering with our new
+                            collection of premium essentials.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <button id="shop"
+                                class="bg-primary text-on-primary px-8 md:px-10 py-4 rounded-full text-label-md hover:shadow-lg transition-all scale-100 active:scale-95">
+                                Shop Now
+                            </button>
+                            <script>
+                            document.getElementById('shop').addEventListener('click', function() {
+                                window.open("../Shop Page/arrival.html", "_self"); // Handle shop now button click
+                            });
+                        </script>
+
+                            <button
+                                class="glass-card border border-primary/20 text-on-background px-8 md:px-10 py-4 rounded-full text-label-md hover:bg-surface-container transition-all">
+                                Explore Lookbook
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Categories -->
+            <section
+                class="max-w-container-max mx-auto px-4 md:px-margin-desktop py-20 md:py-32">
+                <div class="flex flex-col items-center mb-12 md:mb-16">
+                    <h2
+                        class="text-headline-lg text-on-background text-center mb-4">Curated
+                        Collections
+                    </h2>
+                    <div class="h-1 w-20 bg-primary rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+
+                    <!-- Category: Electronics -->
+                    <a href="#"
+                        class="group flex flex-col items-center gap-4 md:gap-6">
+                        <div
+                            class="relative w-full aspect-square rounded-full overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                            <img
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXf826kLxiiGMkg-ps2-Pt1nGJRBWqW8135mtqw5Pzk3YWJCQwosF0Z-ldX6GDDKq8os4kHbk26tPO1SO9rJDSNOEs9n_AFP5UeWnDBV-fWdqcDXC3JgxwdIN4HErM-HUXQomfIDrRHB8W9QraABsp-TPhlKk8mRAHg4_J8psCkftxaWQsrVxgr4Z-o2soBZoIHUWxUSY5CbxHgGQqeDUEzIaZ8GuqCF6U4Cs_mhzHwo8bQSQOTfI2UNnkM75HpftTasExmGZvVg"
+                                alt="Minimalist white smartwatch with premium leather band"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <span
+                            class="text-headline-md group-hover:text-primary transition-colors">Electronics</span>
+                    </a>
+
+                    <!-- Category: Home -->
+                    <a href="#"
+                        class="group flex flex-col items-center gap-4 md:gap-6">
+                        <div
+                            class="relative w-full aspect-square rounded-full overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                            <img
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqaO7oZ9oF44AO87n8dT8ifVpGBvZJ_1KBGELOO1JJt14dlUUyBh4GWu5d0w6gpQY8wMWOli6bR3Cqy1zDr_Sd_QUrbgP1CGklF9cx3bssw2W1vFwOL4D-fp2677KS9mzbeocbStMwNZdxrBpvyZKczgLzJG6rEEfJunJB7ARS5vYpO5mj0Iin-_XlYAD4NPxfHbAiijsMDF9ElIKPT1PrB_v9hW0-fMhG300t6ow-Kozpwstpc4D545jMsqfyX2OmpyhR55AvjQ"
+                                alt="Minimalist interior with designer chair and geometric lamp"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <span
+                            class="text-headline-md group-hover:text-primary transition-colors">Home</span>
+                    </a>
+
+                    <!-- Category: Apparel -->
+                    <a href="#"
+                        class="group flex flex-col items-center gap-4 md:gap-6">
+                        <div
+                            class="relative w-full aspect-square rounded-full overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                            <img
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEO4pl4o9xz7cNwD4ALWCQqhQH5UQP4Qdcc1tsWdP2wYgBb1h-b6z6fqbukRebpbQkuEy-KH4RyTq5wGN3X04l2FfjnEnCYPhSXzqekauqcKk-Db5tDT6rtVCKQEbuR_u_30zt8UgwymnbhJ9-v_nxuhOqNCv1G3t2_aJcLdS4jRme606aZI-4h2LlX3M3hDn6SI8EnOZ33P3CWSYWiho4A2B6RmXpgOfvhTQUuUh9FU8N7YuQLsy99HXvmegMe8VUkUTnutCqfg"
+                                alt="Model in tailored soft gray blazer in modern architectural setting"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <span
+                            class="text-headline-md group-hover:text-primary transition-colors">Apparel</span>
+                    </a>
+
+                    <!-- Category: New In -->
+                    <a href="#"
+                        class="group flex flex-col items-center gap-4 md:gap-6">
+                        <div
+                            class="relative w-full aspect-square rounded-full overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                            <img
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpvGl3kWroup3EpbeM5pBPCxqoCU5AEQ_rzhJdUhwkQ9VS-x5dnXMjBghA5AI5Et5J66ydagg2Pe78oeP0t-RPlaIQqDg6ImUdfqfyW73LmK6TgfKGOvMhggcM0krj9hX70F0SBDYlyM2f5utsTZsgGB_spL5iXiRZj8raQHGGlY2Hgishws_iuqr927OmcQSJXjsqRghZ6E3WRB-9G3H2Im9GVMShxorDQNzF5SsVsQPB44pkYPfFWiJEgbgxirZwndy_QRFDWA"
+                                alt="Tech accessory with glowing violet LED strips and polished metallic surfaces"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <span
+                            class="text-headline-md group-hover:text-primary transition-colors">New
+                            In</span>
+                    </a>
+
+                </div>
+            </section>
+
+            <!-- Best Sellers -->
+            <section class="bg-surface-container-low py-20 md:py-32">
+                <div
+                    class="max-w-container-max mx-auto px-4 md:px-margin-desktop">
+                    <div
+                        class="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-16 gap-6 md:gap-8">
+                        <div>
+                            <h2
+                                class="text-headline-lg text-on-background mb-4">Best
+                                Sellers
+                            </h2>
+                            <p class="text-body-md text-on-surface-variant">The
+                                most coveted pieces of the season, selected by
+                                our global community.</p>
+                        </div>
+                        <a href="#"
+                            class="text-primary text-label-md flex items-center hover:underline whitespace-nowrap">
+                            View All Collection <span
+                                class="material-symbols-outlined ml-2"
+                                aria-hidden="true">trending_flat</span>
+                        </a>
+                    </div>
+
+                    <div
+                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+
+                        <!-- Product Card 1 -->
+                        <div
+                            class="bg-surface-container-lowest rounded-xl p-4 shadow-sm hover:shadow-xl transition-all group">
+                            <div
+                                class="relative aspect-[4/5] rounded-lg overflow-hidden mb-6">
+                                <img
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCt5LlEoUGsRZCLfWVhFXD7fEyRZ_KoMPRVEhhRKHGjp2FLOJZZ0kpaDJzGv-wW7ldfgscEr5GwormDpo1NO4NYmaWfDY0u5XLGPUKSwb9IJYvcNGRYD8W08cQE8HZ096t0x3Le0-OG0Fez-ztSSedwWKq_3GCrgw-ag8Ak5ROhjUEhXQrofQyfVAZenDBwC4Pgs8F_XZTDQSlJKgmhQkw-Y6C8IAUQx8H28CuMnLMO2vGa1vBrZpXIsOpxjTMhv-703y59gQ1kg"
+                                    alt="High-end matte charcoal over-ear headphones on minimalist stand"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <span
+                                    class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 rounded-full text-label-sm">Best
+                                    Seller</span>
+                            </div>
+                            <h3 class="text-body-lg font-bold mb-2">Sonic One
+                                Headphones
+                            </h3>
+                            <p
+                                class="text-headline-md text-primary mb-6">$349.00</p>
+                            <button
+                                class="w-full bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-colors py-3 rounded-full text-label-md">
+                                Quick Add
+                            </button>
+                        </div>
+
+                        <!-- Product Card 2 -->
+                        <div
+                            class="bg-surface-container-lowest rounded-xl p-4 shadow-sm hover:shadow-xl transition-all group">
+                            <div
+                                class="relative aspect-[4/5] rounded-lg overflow-hidden mb-6">
+                                <img
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwcEF-99hDEcYvE-xNGmOia_b_GDBTHCqRoFgZrrLOg8rDcv2_FUgg_EtijaQ1Libb5ObVUwn_GpdGUU9cuI_FPmErE6SH5iS4xDEwET7gl3_0euPB5U7zZyTQL5trJvsWV5o8cnsYoC-1-0KrOpc3fHdguoyICyaXg-uK9hattR_Bcbhsosmps3-QysfIy0euZQmJQ5VRqLc0bR6PfLxDSl_4Yq8nEzYVEwk-SRrrNbynmlOn9UyXvf3wCCvsnHfKKXOZmrthNg"
+                                    alt="Sleek minimalist smartwatch with silver finish and white dial"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <h3 class="text-body-lg font-bold mb-2">AURA
+                                Timepiece v2</h3>
+                            <p
+                                class="text-headline-md text-primary mb-6">$299.00</p>
+                            <button
+                                class="w-full bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-colors py-3 rounded-full text-label-md">
+                                Quick Add
+                            </button>
+                        </div>
+
+                        <!-- Product Card 3 -->
+                        <div
+                            class="bg-surface-container-lowest rounded-xl p-4 shadow-sm hover:shadow-xl transition-all group">
+                            <div
+                                class="relative aspect-[4/5] rounded-lg overflow-hidden mb-6">
+                                <img
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtkjWCONzUuyM2B_3IDJqWCmHUvST5jBjA0IuzDXwAY39gqRMoLr5vdi_88VBgdx7ibyhXLchrMoQc7slJjZN3IOR0rpzun-1MbPNFio4T-KdR328LZP1YO4CAjeDhtwxeT24PeRAZTA_yX_fnJ_vPZLrnGx8ca4pUjma6cdm4G-nJiy5fBMAPcYEkaBSmBwfl7_Bw0jt9x8XyF9PKk5PfHu9ipzHn-uzKlDvhUTEe47uWUc41ZAt_a8sxFGcW9lTh9cbu8RoGWA"
+                                    alt="Tech backpack in dark navy with hidden zippers against concrete wall"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <h3 class="text-body-lg font-bold mb-2">City-Flow
+                                Backpack
+                            </h3>
+                            <p
+                                class="text-headline-md text-primary mb-6">$189.00</p>
+                            <button
+                                class="w-full bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-colors py-3 rounded-full text-label-md">
+                                Quick Add
+                            </button>
+                        </div>
+
+                        <!-- Product Card 4 -->
+                        <div
+                            class="bg-surface-container-lowest rounded-xl p-4 shadow-sm hover:shadow-xl transition-all group">
+                            <div
+                                class="relative aspect-[4/5] rounded-lg overflow-hidden mb-6">
+                                <img
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8tRLi73CfJqZzlFAnRce_DKYEIR9CzqruRtgRxaKBNHCxy5IotDAmMdapXCec0egkPJDYYDoN5ZlWRgeSFZ8i2Aa7UvX_XsYUR5tCqIBkxyuno051TXbBDubLqAfhK7IdfjenzoyM9JLUDfks4prktQXWhzFmhB8OnC8E7lvpWeM1lHc39k2eYdTkCICeTjcytCvl-yaX0sYFZwY67eRuG-xpEB5njFN3zut67SV4A90Xagn7lRjQOB3EfYLOW3_69FLcyEiNLQ"
+                                    alt="Luxury tan leather laptop sleeve on white minimalist desk"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <h3 class="text-body-lg font-bold mb-2">Legacy Tech
+                                Sleeve
+                            </h3>
+                            <p
+                                class="text-headline-md text-primary mb-6">$125.00</p>
+                            <button
+                                class="w-full bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-colors py-3 rounded-full text-label-md">
+                                Quick Add
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials -->
+            <section
+                class="max-w-container-max mx-auto px-4 md:px-margin-desktop py-20 md:py-32">
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-center">
+
+                    <div class="lg:col-span-1">
+                        <h2
+                            class="text-display-lg-mobile text-on-background mb-8">What
+                            our
+                            <br>community says</h2>
+                        <div class="flex gap-2">
+                            <button aria-label="Previous testimonial"
+                                class="p-4 border border-outline-variant rounded-full hover:bg-surface-container transition-colors">
+                                <span class="material-symbols-outlined"
+                                    aria-hidden="true">arrow_back</span>
+                            </button>
+                            <button aria-label="Next testimonial"
+                                class="p-4 border border-outline-variant rounded-full hover:bg-surface-container transition-colors">
+                                <span class="material-symbols-outlined"
+                                    aria-hidden="true">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div
+                        class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-gutter">
+
+                        <!-- Testimonial 1 -->
+                        <div
+                            class="glass-card p-8 md:p-10 rounded-2xl border border-primary/10">
+                            <div class="flex text-tertiary mb-6"
+                                aria-label="5 stars">
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings:'FILL' 1"
+                                    aria-hidden="true">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings:'FILL' 1"
+                                    aria-hidden="true">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings:'FILL' 1"
+                                    aria-hidden="true">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings:'FILL' 1"
+                                    aria-hidden="true">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings:'FILL' 1"
+                                    aria-hidden="true">star</span>
+                            </div>
+                            <p
+                                class="text-body-lg italic text-on-surface mb-8">"The design language of AURA is truly in a league of its own. It's rare to find tech products that actually feel like fashion statements."</p>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-primary-fixed flex-shrink-0"></div>
+                                <div>
+                                    <p class="text-label-md">Julian Rossi</p>
+                                    <p
+                                        class="text-label-sm text-outline">Creative
+                                        Director
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 2 -->
+                        <div
+                            class="glass-card p-8 md:p-10 rounded-2xl border border-primary/10">
+                            <div class="flex text-tertiary mb-6"
+                                aria-label="5 stars">
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings:'FILL' 1"
+                                    aria-hidden="true">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings:'FILL' 1"
+                                    aria-hidden="true">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings:'FILL' 1"
+                                    aria-hidden="true">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings:'FILL' 1"
+                                    aria-hidden="true">star</span>
+                                <span class="material-symbols-outlined"
+                                    style="font-variation-settings:'FILL' 1"
+                                    aria-hidden="true">star</span>
+                            </div>
+                            <p
+                                class="text-body-lg italic text-on-surface mb-8">"Exceptional quality and seamless performance. The attention to detail in the unboxing experience was just the beginning."</p>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-secondary-fixed flex-shrink-0"></div>
+                                <div>
+                                    <p class="text-label-md">Elena Vance</p>
+                                    <p
+                                        class="text-label-sm text-outline">Product
+                                        Designer
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter -->
+            <section
+                class="max-w-container-max mx-auto px-4 md:px-margin-desktop py-20 mb-20 md:mb-40">
+                <div
+                    class="bg-primary-container text-on-primary-container rounded-[40px] p-10 md:p-24 flex flex-col items-center text-center overflow-hidden relative">
+                    <!-- Glow effects -->
+                    <div
+                        class="absolute top-0 right-0 w-96 h-96 bg-primary-fixed/20 blur-[100px] rounded-full -mr-20 -mt-20 pointer-events-none"></div>
+                    <div
+                        class="absolute bottom-0 left-0 w-96 h-96 bg-secondary-container/20 blur-[100px] rounded-full -ml-20 -mb-20 pointer-events-none"></div>
+
+                    <div class="relative z-10 max-w-2xl w-full">
+                        <h2
+                            class="text-display-lg-mobile md:text-display-lg mb-6">Join
+                            the AURA Inner Circle</h2>
+                        <p class="text-body-lg mb-10 md:mb-12 opacity-90">
+                            Receive exclusive early access to product drops and
+                            curated insights into minimalist living.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 w-full">
+                            <input type="email" placeholder="Your email address"
+                                aria-label="Email address"
+                                class="flex-grow rounded-full border-none px-8 py-5 bg-white/20 placeholder-white/60 focus:ring-2 focus:ring-white/50 text-label-md backdrop-blur-sm outline-none text-white">
+                            <button type="button"
+                                class="bg-white text-primary px-8 md:px-10 py-5 rounded-full text-label-md font-bold hover:bg-surface transition-all whitespace-nowrap">
+                                Subscribe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-surface-container-low mt-20 md:mt-40">
+            <div
+                class="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max mx-auto px-4 md:px-margin-desktop py-12 md:py-16">
+
+                <div class="flex flex-col gap-6">
+                    <div
+                        class="text-headline-md font-bold text-on-surface">AURA</div>
+                    <p class="text-body-md text-on-surface-variant">Elevating
+                        the everyday through sophisticated minimalism and
+                        intentional design.</p>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <h4
+                        class="text-label-md uppercase tracking-widest text-on-surface mb-2">Shop</h4>
+                    <a href="#"
+                        class="text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all">Electronics</a>
+                    <a href="#"
+                        class="text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all">Home
+                        Essentials</a>
+                    <a href="#"
+                        class="text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all">Apparel</a>
+                    <a href="#"
+                        class="text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all">New
+                        Arrivals</a>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <h4
+                        class="text-label-md uppercase tracking-widest text-on-surface mb-2">Customer
+                        Care
+                    </h4>
+                    <a href="#"
+                        class="text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all">Customer
+                        Service</a>
+                    <a href="#"
+                        class="text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all">Shipping</a>
+                    <a href="#"
+                        class="text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all">Returns</a>
+                    <a href="#"
+                        class="text-label-sm text-on-surface-variant hover:text-primary hover:underline transition-all">Privacy
+                        Policy</a>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <h4
+                        class="text-label-md uppercase tracking-widest text-on-surface mb-2">Connect</h4>
+                    <div class="flex gap-4">
+                        <a href="#" aria-label="Website"
+                            class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-[20px]"
+                                aria-hidden="true">public</span>
+                        </a>
+                        <a href="#" aria-label="Instagram"
+                            class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-[20px]"
+                                aria-hidden="true">camera</span>
+                        </a>
+                        <a href="#" aria-label="Email"
+                            class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-[20px]"
+                                aria-hidden="true">alternate_email</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div
+                class="max-w-container-max mx-auto px-4 md:px-margin-desktop border-t border-outline-variant/30 py-8 text-center md:text-left">
+                <p class="text-label-sm text-on-surface-variant opacity-70">©
+                    2024 AURA Minimalist Tech. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </body>
+
+</html>
