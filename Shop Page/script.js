@@ -264,7 +264,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!sortSelect) return [...list];
     const mode = sortSelect.value;
     const sorted = [...list];
-    if (mode === "Price: Low to High") {
+    if (mode === "A to Z") {
+      sorted.sort((a, b) =>
+        a.title.localeCompare(b.title, "en", { sensitivity: "base" })
+      );
+    } else if (mode === "Price: Low to High") {
       sorted.sort((a, b) => a.price - b.price);
     } else if (mode === "Price: High to Low") {
       sorted.sort((a, b) => b.price - a.price);
@@ -343,7 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   products = extractProducts();
-  updateCounter(products.length);
+  applySort();
 
   if (searchBtn) {
     searchBtn.addEventListener("click", applyFilters);
