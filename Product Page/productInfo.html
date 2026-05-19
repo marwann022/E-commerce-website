@@ -1,10 +1,133 @@
 <!doctype html>
 
-<html class="light" lang="en">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Info</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              background: "#f9f9ff",
+              "inverse-surface": "#293040",
+              "on-background": "#141b2b",
+              "surface-variant": "#dce2f7",
+              "on-primary-fixed-variant": "#5516be",
+              "outline-variant": "#cbc3d7",
+              "on-tertiary-fixed-variant": "#653e00",
+              "inverse-on-surface": "#edf0ff",
+              "secondary-container": "#fd56a7",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary": "#ffffff",
+              "secondary-fixed": "#ffd9e4",
+              "on-error": "#ffffff",
+              "tertiary-container": "#a36700",
+              error: "#ba1a1a",
+              outline: "#7b7486",
+              tertiary: "#825100",
+              "on-surface": "#141b2b",
+              "on-secondary-fixed": "#3e0022",
+              "surface-container-low": "#f1f3ff",
+              "on-primary-container": "#fffbff",
+              "on-secondary-container": "#600037",
+              "on-tertiary-fixed": "#2a1700",
+              "surface-container": "#e9edff",
+              "surface-container-high": "#e1e8fd",
+              "secondary-fixed-dim": "#ffb0cd",
+              "on-secondary-fixed-variant": "#8c0053",
+              "tertiary-fixed": "#ffddb8",
+              "on-tertiary": "#ffffff",
+              "surface-bright": "#f9f9ff",
+              "primary-container": "#8455ef",
+              "primary-fixed-dim": "#d0bcff",
+              "inverse-primary": "#d0bcff",
+              "surface-dim": "#d3daef",
+              "on-error-container": "#93000a",
+              "on-primary": "#ffffff",
+              "tertiary-fixed-dim": "#ffb95f",
+              "on-surface-variant": "#494454",
+              "primary-fixed": "#e9ddff",
+              "on-tertiary-container": "#fffbff",
+              surface: "#f9f9ff",
+              secondary: "#b4136d",
+              "error-container": "#ffdad6",
+              "surface-tint": "#6d3bd7",
+              "on-primary-fixed": "#23005c",
+              "surface-container-highest": "#dce2f7",
+              primary: "#6b38d4",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              unit: "8px",
+              "margin-mobile": "16px",
+              "container-max": "1280px",
+              gutter: "24px",
+              "margin-desktop": "40px",
+            },
+            fontFamily: {
+              "headline-md": ["Inter"],
+              "label-sm": ["Inter"],
+              "label-md": ["Inter"],
+              "headline-lg": ["Inter"],
+              "body-lg": ["Inter"],
+              "body-md": ["Inter"],
+              "display-lg": ["Inter"],
+              "display-lg-mobile": ["Inter"],
+            },
+            fontSize: {
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "label-sm": ["12px", { lineHeight: "16px", fontWeight: "600" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "500",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "display-lg-mobile": [
+                "36px",
+                {
+                  lineHeight: "44px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
@@ -17,8 +140,22 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
-    <script type="module" src="./productInfo.js"></script>
-    <link rel="stylesheet" href="./productInfo.css" />
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .custom-shadow {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      }
+      .hover-shadow:hover {
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      }
+    </style>
   </head>
   <body class="bg-background text-on-background font-body-md">
     <!-- TopAppBar -->
@@ -80,7 +217,8 @@
                 class="material-symbols-outlined text-primary dark:text-primary-fixed-dim"
                 >shopping_bag</span
               >
-              <span id="cart-badge"
+              <span
+                id="cart-badge"
                 class="absolute -top-1 -right-1 bg-secondary text-on-secondary text-[10px] rounded-full w-4 h-4 flex items-center justify-center transition-transform duration-300"
                 >2</span
               >
@@ -90,11 +228,11 @@
       </div>
     </header>
     <main
-      class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12"
+      class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8"
     >
       <!-- Breadcrumbs -->
       <nav
-        class="flex items-center space-x-2 mb-8 text-label-md font-label-md text-on-surface-variant"
+        class="flex items-center space-x-2 mb-4 text-label-md font-label-md text-on-surface-variant"
       >
         <span>Shop</span>
         <span class="material-symbols-outlined text-[16px]">chevron_right</span>
@@ -113,7 +251,8 @@
             >
               New Release
             </div>
-            <img id="main-image"
+            <img
+              id="main-image"
               class="w-full h-full object-cover transition-opacity duration-300"
               data-alt="A professional studio product shot of sleek, matte black over-ear headphones with silver accents. The lighting is soft and directional, highlighting the premium texture of the leather ear cushions. The background is a clean, minimalist light gray, emphasizing the sophisticated tech aesthetic of the product. The mood is high-end and modern, following a clean corporate minimalist design language."
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqjXYhXW6-iuHi6R6jI2FR-gnDd7Fd7DnR3imqZ5xL87z3anhjTHmwbQtNf3BcNqFmhTJ0ayOsdZtk3SFniInyk8Fi8r-L8PGjEOb2O2697jLTn5wOoiJiejq_wPYjYl-x5DBJD-KKI8jGxkyOqUFkrrbFa-CaRV7sbnTTmpPOKhIBgP6zUZkjfNrP3dASpSorCbjZBI0wNpjZiu3VedaC3lQjYop1HeUmFOaWkn5aftQtvs0__w1HvfkXGBHRthdv7nNAkH6Lfg"
@@ -195,7 +334,10 @@
               >4.8 (124 reviews)</span
             >
           </div>
-          <div id="product-price" class="text-headline-lg font-headline-lg text-primary mb-8 transition-all">
+          <div
+            id="product-price"
+            class="text-headline-lg font-headline-lg text-primary mb-8 transition-all"
+          >
             $299.00
           </div>
           <p
@@ -213,21 +355,24 @@
                 >Color</label
               >
               <div class="flex gap-3" id="color-options">
-                <button data-color="black"
+                <button
+                  data-color="black"
                   class="color-btn w-10 h-10 rounded-full border-2 border-primary p-0.5 ring-2 ring-offset-2 ring-transparent transition-all"
                 >
                   <span
                     class="block w-full h-full rounded-full bg-on-background"
                   ></span>
                 </button>
-                <button data-color="silver"
+                <button
+                  data-color="silver"
                   class="color-btn w-10 h-10 rounded-full border-2 border-transparent hover:border-outline-variant p-0.5 transition-all"
                 >
                   <span
                     class="block w-full h-full rounded-full bg-outline-variant"
                   ></span>
                 </button>
-                <button data-color="purple"
+                <button
+                  data-color="purple"
                   class="color-btn w-10 h-10 rounded-full border-2 border-transparent hover:border-outline-variant p-0.5 transition-all"
                 >
                   <span
@@ -242,12 +387,16 @@
                 >Model</label
               >
               <div class="grid grid-cols-2 gap-4" id="model-options">
-                <button data-model="Standard" data-price="299.00"
+                <button
+                  data-model="Standard"
+                  data-price="299.00"
                   class="model-btn py-3 px-6 border-2 border-primary rounded-xl text-label-md font-label-md bg-primary/5 text-primary transition-colors"
                 >
                   Standard Edition
                 </button>
-                <button data-model="Pro" data-price="349.00"
+                <button
+                  data-model="Pro"
+                  data-price="349.00"
                   class="model-btn py-3 px-6 border-2 border-outline-variant rounded-xl text-label-md font-label-md text-on-surface-variant hover:border-primary hover:text-primary transition-colors"
                 >
                   Pro Signature
@@ -262,13 +411,17 @@
               <div
                 class="flex items-center w-32 border border-outline-variant rounded-full p-1 bg-surface-container-low"
               >
-                <button id="qty-minus"
+                <button
+                  id="qty-minus"
                   class="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors"
                 >
                   <span class="material-symbols-outlined">remove</span>
                 </button>
-                <span id="qty-value" class="flex-1 text-center font-bold">1</span>
-                <button id="qty-plus"
+                <span id="qty-value" class="flex-1 text-center font-bold"
+                  >1</span
+                >
+                <button
+                  id="qty-plus"
                   class="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors"
                 >
                   <span class="material-symbols-outlined">add</span>
@@ -278,7 +431,8 @@
           </div>
           <!-- Actions -->
           <div class="flex flex-col gap-4">
-            <button id="add-to-cart-btn"
+            <button
+              id="add-to-cart-btn"
               class="w-full bg-primary text-on-primary font-headline-md py-5 rounded-full custom-shadow scale-100 active:scale-95 transition-all flex justify-center items-center gap-2"
             >
               <span id="add-to-cart-text">Add to Cart</span>
@@ -312,23 +466,29 @@
       <!-- Tabs Section -->
       <div class="mt-32">
         <div class="flex border-b border-outline-variant mb-12" id="tabs-nav">
-          <button data-tab="reviews"
+          <button
+            data-tab="reviews"
             class="tab-btn px-8 py-4 text-headline-md border-b-2 border-primary text-primary transition-colors"
           >
             Reviews
           </button>
-          <button data-tab="specs"
+          <button
+            data-tab="specs"
             class="tab-btn px-8 py-4 text-headline-md text-on-surface-variant hover:text-primary border-b-2 border-transparent transition-colors"
           >
             Product Specs
           </button>
-          <button data-tab="faq"
+          <button
+            data-tab="faq"
             class="tab-btn px-8 py-4 text-headline-md text-on-surface-variant hover:text-primary border-b-2 border-transparent transition-colors"
           >
             FAQ
           </button>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 tab-content" id="tab-reviews">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-12 tab-content"
+          id="tab-reviews"
+        >
           <div class="space-y-8">
             <!-- Review 1 -->
             <div
@@ -460,6 +620,7 @@
               Based on 124 reviews
             </div>
             <button
+              id="write-review-btn"
               class="bg-on-background text-background px-8 py-3 rounded-full font-label-md hover:opacity-90 transition-opacity"
             >
               Write a Review
@@ -467,29 +628,50 @@
           </div>
         </div>
         <div class="hidden tab-content" id="tab-specs">
-          <div class="bg-surface-container-lowest p-8 rounded-2xl custom-shadow text-body-lg text-on-surface-variant">
-            <h3 class="font-bold text-on-surface mb-4">Technical Specifications</h3>
+          <div
+            class="bg-surface-container-lowest p-8 rounded-2xl custom-shadow text-body-lg text-on-surface-variant"
+          >
+            <h3 class="font-bold text-on-surface mb-4">
+              Technical Specifications
+            </h3>
             <ul class="list-disc pl-6 space-y-2">
               <li>Driver Size: 40mm dynamic drivers</li>
               <li>Frequency Response: 20Hz - 20kHz</li>
               <li>Battery Life: Up to 40 hours with ANC on</li>
-              <li>Charging: USB-C fast charging (15 mins = 4 hours playback)</li>
+              <li>
+                Charging: USB-C fast charging (15 mins = 4 hours playback)
+              </li>
               <li>Connectivity: Bluetooth 5.2, multipoint support</li>
               <li>Weight: 250g</li>
             </ul>
           </div>
         </div>
         <div class="hidden tab-content" id="tab-faq">
-          <div class="bg-surface-container-lowest p-8 rounded-2xl custom-shadow text-body-lg text-on-surface-variant">
-            <h3 class="font-bold text-on-surface mb-4">Frequently Asked Questions</h3>
+          <div
+            class="bg-surface-container-lowest p-8 rounded-2xl custom-shadow text-body-lg text-on-surface-variant"
+          >
+            <h3 class="font-bold text-on-surface mb-4">
+              Frequently Asked Questions
+            </h3>
             <div class="space-y-4">
               <div>
-                <h4 class="font-bold text-on-surface">Are they water-resistant?</h4>
-                <p>The Aura Elite headphones feature an IPX4 rating, meaning they can withstand splashes and light rain, but should not be submerged.</p>
+                <h4 class="font-bold text-on-surface">
+                  Are they water-resistant?
+                </h4>
+                <p>
+                  The Aura Elite headphones feature an IPX4 rating, meaning they
+                  can withstand splashes and light rain, but should not be
+                  submerged.
+                </p>
               </div>
               <div>
-                <h4 class="font-bold text-on-surface">Does the ANC work without playing music?</h4>
-                <p>Yes, you can activate Active Noise Cancellation even when no audio is playing to enjoy a quiet environment.</p>
+                <h4 class="font-bold text-on-surface">
+                  Does the ANC work without playing music?
+                </h4>
+                <p>
+                  Yes, you can activate Active Noise Cancellation even when no
+                  audio is playing to enjoy a quiet environment.
+                </p>
               </div>
             </div>
           </div>
@@ -719,5 +901,122 @@
         </div>
       </div>
     </footer>
+
+    <!-- Review Modal -->
+    <div
+      id="review-modal"
+      class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300"
+    >
+      <div
+        class="absolute inset-0 bg-on-background/40 backdrop-blur-sm"
+        id="review-modal-backdrop"
+      ></div>
+      <div
+        class="bg-surface-container-lowest p-8 rounded-3xl custom-shadow w-full max-w-lg relative z-10 scale-95 transition-transform duration-300"
+        id="review-modal-content"
+      >
+        <button
+          id="close-review-modal"
+          class="absolute top-6 right-6 text-on-surface-variant hover:text-primary transition-colors"
+        >
+          <span class="material-symbols-outlined">close</span>
+        </button>
+        <h2 class="text-headline-md font-headline-md mb-2">Write a Review</h2>
+        <p class="text-body-md text-on-surface-variant mb-6">
+          Share your experience with the Aura Elite Wireless.
+        </p>
+        <form id="review-form" class="space-y-6">
+          <div>
+            <label
+              class="text-label-sm font-label-sm uppercase tracking-wider block mb-2 text-on-surface-variant"
+              >Rating</label
+            >
+            <div
+              class="flex gap-2 text-outline-variant cursor-pointer"
+              id="rating-stars"
+            >
+              <span
+                class="material-symbols-outlined hover:text-tertiary transition-colors"
+                data-value="1"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined hover:text-tertiary transition-colors"
+                data-value="2"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined hover:text-tertiary transition-colors"
+                data-value="3"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined hover:text-tertiary transition-colors"
+                data-value="4"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+              <span
+                class="material-symbols-outlined hover:text-tertiary transition-colors"
+                data-value="5"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >star</span
+              >
+            </div>
+            <input type="hidden" id="rating-value" value="5" required />
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label
+                class="text-label-sm font-label-sm uppercase tracking-wider block mb-2 text-on-surface-variant"
+                >Name</label
+              >
+              <input
+                type="text"
+                required
+                class="w-full bg-surface-container border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-primary text-body-md"
+                placeholder="Your name"
+              />
+            </div>
+            <div>
+              <label
+                class="text-label-sm font-label-sm uppercase tracking-wider block mb-2 text-on-surface-variant"
+                >Email</label
+              >
+              <input
+                type="email"
+                required
+                class="w-full bg-surface-container border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-primary text-body-md"
+                placeholder="Your email"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              class="text-label-sm font-label-sm uppercase tracking-wider block mb-2 text-on-surface-variant"
+              >Review</label
+            >
+            <textarea
+              required
+              rows="4"
+              class="w-full bg-surface-container border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-primary text-body-md resize-none"
+              placeholder="What did you like or dislike?"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            id="submit-review-btn"
+            class="w-full bg-primary text-on-primary font-headline-md py-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+          >
+            Submit Review
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="./productInfo.js"></script>
   </body>
 </html>

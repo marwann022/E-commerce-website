@@ -1,271 +1,202 @@
-const tailwindConfig = {
-  darkMode: "class",
-  theme: {
-    extend: {
-      colors: {
-        background: "#f9f9ff",
-        "inverse-surface": "#293040",
-        "on-background": "#141b2b",
-        "surface-variant": "#dce2f7",
-        "on-primary-fixed-variant": "#5516be",
-        "outline-variant": "#cbc3d7",
-        "on-tertiary-fixed-variant": "#653e00",
-        "inverse-on-surface": "#edf0ff",
-        "secondary-container": "#fd56a7",
-        "surface-container-lowest": "#ffffff",
-        "on-secondary": "#ffffff",
-        "secondary-fixed": "#ffd9e4",
-        "on-error": "#ffffff",
-        "tertiary-container": "#a36700",
-        error: "#ba1a1a",
-        outline: "#7b7486",
-        tertiary: "#825100",
-        "on-surface": "#141b2b",
-        "on-secondary-fixed": "#3e0022",
-        "surface-container-low": "#f1f3ff",
-        "on-primary-container": "#fffbff",
-        "on-secondary-container": "#600037",
-        "on-tertiary-fixed": "#2a1700",
-        "surface-container": "#e9edff",
-        "surface-container-high": "#e1e8fd",
-        "secondary-fixed-dim": "#ffb0cd",
-        "on-secondary-fixed-variant": "#8c0053",
-        "tertiary-fixed": "#ffddb8",
-        "on-tertiary": "#ffffff",
-        "surface-bright": "#f9f9ff",
-        "primary-container": "#8455ef",
-        "primary-fixed-dim": "#d0bcff",
-        "inverse-primary": "#d0bcff",
-        "surface-dim": "#d3daef",
-        "on-error-container": "#93000a",
-        "on-primary": "#ffffff",
-        "tertiary-fixed-dim": "#ffb95f",
-        "on-surface-variant": "#494454",
-        "primary-fixed": "#e9ddff",
-        "on-tertiary-container": "#fffbff",
-        surface: "#f9f9ff",
-        secondary: "#b4136d",
-        "error-container": "#ffdad6",
-        "surface-tint": "#6d3bd7",
-        "on-primary-fixed": "#23005c",
-        "surface-container-highest": "#dce2f7",
-        primary: "#6b38d4",
-      },
-      borderRadius: {
-        DEFAULT: "0.25rem",
-        lg: "0.5rem",
-        xl: "0.75rem",
-        full: "9999px",
-      },
-      spacing: {
-        unit: "8px",
-        "margin-mobile": "16px",
-        "container-max": "1280px",
-        gutter: "24px",
-        "margin-desktop": "40px",
-      },
-      fontFamily: {
-        "headline-md": ["Inter"],
-        "label-sm": ["Inter"],
-        "label-md": ["Inter"],
-        "headline-lg": ["Inter"],
-        "body-lg": ["Inter"],
-        "body-md": ["Inter"],
-        "display-lg": ["Inter"],
-        "display-lg-mobile": ["Inter"],
-      },
-      fontSize: {
-        "headline-md": [
-          "24px",
-          { lineHeight: "32px", fontWeight: "600" },
-        ],
-        "label-sm": ["12px", { lineHeight: "16px", fontWeight: "600" }],
-        "label-md": [
-          "14px",
-          {
-            lineHeight: "20px",
-            letterSpacing: "0.01em",
-            fontWeight: "500",
-          },
-        ],
-        "headline-lg": [
-          "32px",
-          {
-            lineHeight: "40px",
-            letterSpacing: "-0.01em",
-            fontWeight: "600",
-          },
-        ],
-        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
-        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
-        "display-lg": [
-          "48px",
-          {
-            lineHeight: "56px",
-            letterSpacing: "-0.02em",
-            fontWeight: "700",
-          },
-        ],
-        "display-lg-mobile": [
-          "36px",
-          {
-            lineHeight: "44px",
-            letterSpacing: "-0.02em",
-            fontWeight: "700",
-          },
-        ],
-      },
-    },
-  },
-};
+// --- Basic UI Logic ---
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // 1. Thumbnail Gallery
+  var mainImage = document.getElementById('main-image');
+  var thumbnails = document.querySelectorAll('.thumbnail-btn');
 
-window.tailwind = window.tailwind || {};
-window.tailwind.config = tailwindConfig;
-
-// --- UI Interaction Logic ---
-document.addEventListener('DOMContentLoaded', () => {
-  // --- Thumbnail Gallery Logic ---
-  const mainImage = document.getElementById('main-image');
-  const thumbnails = document.querySelectorAll('.thumbnail-btn');
-
-  thumbnails.forEach(thumb => {
-    thumb.addEventListener('click', () => {
-      const imgSrc = thumb.querySelector('img').src;
+  for (var i = 0; i < thumbnails.length; i++) {
+    thumbnails[i].addEventListener('click', function() {
+      var img = this.querySelector('img');
+      if (!img) return; // Ignore if no image (like video button)
       
-      mainImage.style.opacity = '0.5';
-      setTimeout(() => {
-        mainImage.src = imgSrc;
-        mainImage.style.opacity = '1';
-      }, 150);
+      mainImage.src = img.src;
 
-      thumbnails.forEach(t => {
-        t.classList.remove('border-primary');
-        t.classList.add('border-transparent', 'hover:border-primary', 'hover:opacity-80');
-      });
-      thumb.classList.remove('border-transparent', 'hover:border-primary', 'hover:opacity-80');
-      thumb.classList.add('border-primary');
+      // Update active border
+      for (var j = 0; j < thumbnails.length; j++) {
+        thumbnails[j].classList.remove('border-primary');
+        thumbnails[j].classList.add('border-transparent');
+      }
+      this.classList.remove('border-transparent');
+      this.classList.add('border-primary');
     });
-  });
+  }
 
-  // --- Quantity Logic ---
-  const qtyMinus = document.getElementById('qty-minus');
-  const qtyPlus = document.getElementById('qty-plus');
-  const qtyValue = document.getElementById('qty-value');
-  let quantity = 1;
+  // 2. Quantity Logic
+  var qtyMinus = document.getElementById('qty-minus');
+  var qtyPlus = document.getElementById('qty-plus');
+  var qtyValue = document.getElementById('qty-value');
+  var quantity = 1;
 
-  qtyMinus.addEventListener('click', () => {
+  qtyMinus.addEventListener('click', function() {
     if (quantity > 1) {
       quantity--;
       qtyValue.textContent = quantity;
     }
   });
 
-  qtyPlus.addEventListener('click', () => {
+  qtyPlus.addEventListener('click', function() {
     if (quantity < 10) {
       quantity++;
       qtyValue.textContent = quantity;
     }
   });
 
-  // --- Color Selection Logic ---
-  const colorBtns = document.querySelectorAll('.color-btn');
-  let selectedColor = 'black';
+  // 3. Color Selection
+  var colorBtns = document.querySelectorAll('.color-btn');
 
-  colorBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      selectedColor = btn.dataset.color;
-      
-      colorBtns.forEach(c => {
-        c.classList.remove('border-primary', 'ring-2', 'ring-offset-2');
-        c.classList.add('border-transparent', 'hover:border-outline-variant');
-      });
-      btn.classList.remove('border-transparent', 'hover:border-outline-variant');
-      btn.classList.add('border-primary', 'ring-2', 'ring-offset-2');
+  for (var k = 0; k < colorBtns.length; k++) {
+    colorBtns[k].addEventListener('click', function() {
+      for (var l = 0; l < colorBtns.length; l++) {
+        colorBtns[l].classList.remove('border-primary', 'ring-2', 'ring-offset-2');
+        colorBtns[l].classList.add('border-transparent');
+      }
+      this.classList.remove('border-transparent');
+      this.classList.add('border-primary', 'ring-2', 'ring-offset-2');
     });
-  });
+  }
 
-  // --- Model Selection Logic ---
-  const modelBtns = document.querySelectorAll('.model-btn');
-  const priceDisplay = document.getElementById('product-price');
-  let selectedModel = 'Standard';
-  let currentPrice = 299.00;
+  // 4. Model & Price Selection
+  var modelBtns = document.querySelectorAll('.model-btn');
+  var priceDisplay = document.getElementById('product-price');
 
-  modelBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      selectedModel = btn.dataset.model;
-      currentPrice = parseFloat(btn.dataset.price);
+  for (var m = 0; m < modelBtns.length; m++) {
+    modelBtns[m].addEventListener('click', function() {
+      var newPrice = this.getAttribute('data-price');
+      priceDisplay.textContent = '$' + parseFloat(newPrice).toFixed(2);
+
+      for (var n = 0; n < modelBtns.length; n++) {
+        modelBtns[n].classList.remove('border-primary', 'bg-primary/5', 'text-primary');
+        modelBtns[n].classList.add('border-outline-variant', 'text-on-surface-variant');
+      }
       
-      priceDisplay.style.opacity = '0';
-      setTimeout(() => {
-        priceDisplay.textContent = `$${currentPrice.toFixed(2)}`;
-        priceDisplay.style.opacity = '1';
-      }, 150);
-
-      modelBtns.forEach(m => {
-        m.classList.remove('border-primary', 'bg-primary/5', 'text-primary');
-        m.classList.add('border-outline-variant', 'text-on-surface-variant', 'hover:border-primary', 'hover:text-primary');
-      });
-      btn.classList.remove('border-outline-variant', 'text-on-surface-variant', 'hover:border-primary', 'hover:text-primary');
-      btn.classList.add('border-primary', 'bg-primary/5', 'text-primary');
+      this.classList.remove('border-outline-variant', 'text-on-surface-variant');
+      this.classList.add('border-primary', 'bg-primary/5', 'text-primary');
     });
-  });
+  }
 
-  // --- Tab Switching Logic ---
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const tabContents = document.querySelectorAll('.tab-content');
+  // 5. Tabs
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  var tabContents = document.querySelectorAll('.tab-content');
 
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetTab = btn.dataset.tab;
+  for (var p = 0; p < tabBtns.length; p++) {
+    tabBtns[p].addEventListener('click', function() {
+      var targetId = 'tab-' + this.getAttribute('data-tab');
 
-      tabBtns.forEach(t => {
-        t.classList.remove('border-primary', 'text-primary');
-        t.classList.add('border-transparent', 'text-on-surface-variant', 'hover:text-primary');
-      });
-      btn.classList.remove('border-transparent', 'text-on-surface-variant', 'hover:text-primary');
-      btn.classList.add('border-primary', 'text-primary');
+      // Update buttons
+      for (var q = 0; q < tabBtns.length; q++) {
+        tabBtns[q].classList.remove('border-primary', 'text-primary');
+        tabBtns[q].classList.add('border-transparent', 'text-on-surface-variant');
+      }
+      this.classList.remove('border-transparent', 'text-on-surface-variant');
+      this.classList.add('border-primary', 'text-primary');
 
-      tabContents.forEach(content => {
-        if (content.id === `tab-${targetTab}`) {
-          content.classList.remove('hidden');
+      // Show content
+      for (var r = 0; r < tabContents.length; r++) {
+        if (tabContents[r].id === targetId) {
+          tabContents[r].classList.remove('hidden');
         } else {
-          content.classList.add('hidden');
+          tabContents[r].classList.add('hidden');
         }
-      });
+      }
     });
-  });
+  }
 
-  // --- Add to Cart Logic ---
-  const addToCartBtn = document.getElementById('add-to-cart-btn');
-  const addToCartText = document.getElementById('add-to-cart-text');
-  const cartBadge = document.getElementById('cart-badge');
-  let cartCount = 2; // Initial hardcoded state
+  // 6. Add to Cart
+  var addToCartBtn = document.getElementById('add-to-cart-btn');
+  var addToCartText = document.getElementById('add-to-cart-text');
+  var cartBadge = document.getElementById('cart-badge');
+  var cartCount = 2;
 
-  addToCartBtn.addEventListener('click', () => {
-    if (addToCartBtn.disabled) return;
+  addToCartBtn.addEventListener('click', function() {
+    if (this.disabled) return;
     
-    addToCartBtn.disabled = true;
-    addToCartText.textContent = "Adding...";
-    addToCartBtn.classList.add('opacity-80');
+    this.disabled = true;
+    
+    cartCount += quantity;
+    cartBadge.textContent = cartCount;
 
-    setTimeout(() => {
-      cartCount += quantity;
-      cartBadge.textContent = cartCount;
-      
-      cartBadge.classList.add('scale-150');
-      setTimeout(() => cartBadge.classList.remove('scale-150'), 300);
+    addToCartText.textContent = "Successfully Added";
+    this.classList.remove('bg-primary', 'text-on-primary');
+    this.classList.add('bg-on-background', 'text-background');
 
-      addToCartText.textContent = "Added to Cart";
-      addToCartBtn.classList.remove('bg-primary', 'text-on-primary');
-      addToCartBtn.classList.add('bg-tertiary-container', 'text-on-tertiary-container');
-      
-      setTimeout(() => {
-        addToCartText.textContent = "Add to Cart";
-        addToCartBtn.classList.remove('bg-tertiary-container', 'text-on-tertiary-container', 'opacity-80');
-        addToCartBtn.classList.add('bg-primary', 'text-on-primary');
-        addToCartBtn.disabled = false;
-      }, 2000);
-      
-    }, 600);
+    var btnRef = this;
+    setTimeout(function() {
+      addToCartText.textContent = "Add to Cart";
+      btnRef.classList.remove('bg-on-background', 'text-background');
+      btnRef.classList.add('bg-primary', 'text-on-primary');
+      btnRef.disabled = false;
+    }, 2000);
   });
+
+  // 7. Review Modal
+  var writeReviewBtn = document.getElementById('write-review-btn');
+  var reviewModal = document.getElementById('review-modal');
+  var closeReviewBtn = document.getElementById('close-review-modal');
+  var reviewBackdrop = document.getElementById('review-modal-backdrop');
+  var reviewForm = document.getElementById('review-form');
+  var stars = document.querySelectorAll('#rating-stars span');
+  var ratingInput = document.getElementById('rating-value');
+  var submitReviewBtn = document.getElementById('submit-review-btn');
+  var currentRating = 5;
+
+  function openModal() {
+    reviewModal.classList.remove('hidden');
+    reviewModal.classList.remove('opacity-0');
+  }
+
+  function closeModal() {
+    reviewModal.classList.add('hidden');
+    reviewModal.classList.add('opacity-0');
+  }
+
+  if (writeReviewBtn) writeReviewBtn.addEventListener('click', openModal);
+  if (closeReviewBtn) closeReviewBtn.addEventListener('click', closeModal);
+  if (reviewBackdrop) reviewBackdrop.addEventListener('click', closeModal);
+
+  // Stars
+  function updateStars(rating) {
+    for (var s = 0; s < stars.length; s++) {
+      if (s < rating) {
+        stars[s].style.fontVariationSettings = "'FILL' 1";
+        stars[s].classList.add('text-tertiary');
+      } else {
+        stars[s].style.fontVariationSettings = "'FILL' 0";
+        stars[s].classList.remove('text-tertiary');
+      }
+    }
+  }
+
+  for (var t = 0; t < stars.length; t++) {
+    stars[t].addEventListener('click', function() {
+      currentRating = parseInt(this.getAttribute('data-value'), 10);
+      ratingInput.value = currentRating;
+      updateStars(currentRating);
+    });
+  }
+
+  if (reviewForm) {
+    reviewForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      var originalText = submitReviewBtn.textContent;
+      submitReviewBtn.textContent = "Review Submitted!";
+      submitReviewBtn.classList.remove('bg-primary', 'text-on-primary');
+      submitReviewBtn.classList.add('bg-on-background', 'text-background');
+      submitReviewBtn.disabled = true;
+
+      setTimeout(function() {
+        closeModal();
+        reviewForm.reset();
+        currentRating = 5;
+        updateStars(5);
+        ratingInput.value = 5;
+        
+        submitReviewBtn.textContent = originalText;
+        submitReviewBtn.classList.remove('bg-on-background', 'text-background');
+        submitReviewBtn.classList.add('bg-primary', 'text-on-primary');
+        submitReviewBtn.disabled = false;
+      }, 1500);
+    });
+  }
 });
