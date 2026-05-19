@@ -23,6 +23,16 @@ body {
     border-radius: 10px; 
 }
 
+.product-card {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.product-card.is-hidden {
+    opacity: 0;
+    transform: scale(0.97);
+    pointer-events: none;
+}
+
 :root {
     --background: #f9f9ff;
     --inverse-surface: #293040;
