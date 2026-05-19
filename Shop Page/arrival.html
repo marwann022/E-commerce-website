@@ -151,22 +151,27 @@
                 <h3 class="text-label-md font-label-md text-on-surface uppercase tracking-wider mb-4">Category</h3>
                 <div class="space-y-3">
                     <label class="flex items-center group cursor-pointer select-none outline-none focus:outline-none focus-within:outline-none">
-                        <input class="rounded border-outline-variant text-primary w-5 h-5 transition-all focus:ring-0 focus:ring-offset-0 focus:outline-none active:border-primary group-hover:border-primary" type="checkbox">
+                        <input checked class="category-checkbox rounded border-outline-variant text-primary w-5 h-5 transition-all focus:ring-0 focus:ring-offset-0 focus:outline-none active:border-primary group-hover:border-primary" type="checkbox" value="all">
+                        <span class="ml-3 text-body-md font-body-md text-on-surface-variant group-hover:text-primary">All</span>
+                    </label>
+
+                    <label class="flex items-center group cursor-pointer select-none outline-none focus:outline-none focus-within:outline-none">
+                        <input class="category-checkbox rounded border-outline-variant text-primary w-5 h-5 transition-all focus:ring-0 focus:ring-offset-0 focus:outline-none active:border-primary group-hover:border-primary" type="checkbox">
                         <span class="ml-3 text-body-md font-body-md text-on-surface-variant group-hover:text-primary">Audio</span>
                     </label>
                     
                     <label class="flex items-center group cursor-pointer select-none outline-none focus:outline-none focus-within:outline-none">
-                        <input checked="" class="rounded border-outline-variant text-primary w-5 h-5 transition-all focus:ring-0 focus:ring-offset-0 focus:outline-none active:border-primary group-hover:border-primary" type="checkbox">
+                        <input class="category-checkbox rounded border-outline-variant text-primary w-5 h-5 transition-all focus:ring-0 focus:ring-offset-0 focus:outline-none active:border-primary group-hover:border-primary" type="checkbox">
                         <span class="ml-3 text-body-md font-body-md text-on-surface-variant group-hover:text-primary">Wearables</span>
                     </label>
                     
                     <label class="flex items-center group cursor-pointer select-none outline-none focus:outline-none focus-within:outline-none">
-                        <input class="rounded border-outline-variant text-primary w-5 h-5 transition-all focus:ring-0 focus:ring-offset-0 focus:outline-none active:border-primary group-hover:border-primary" type="checkbox">
+                        <input class="category-checkbox rounded border-outline-variant text-primary w-5 h-5 transition-all focus:ring-0 focus:ring-offset-0 focus:outline-none active:border-primary group-hover:border-primary" type="checkbox">
                         <span class="ml-3 text-body-md font-body-md text-on-surface-variant group-hover:text-primary">Home Office</span>
                     </label>
                     
                     <label class="flex items-center group cursor-pointer select-none outline-none focus:outline-none focus-within:outline-none">
-                        <input class="rounded border-outline-variant text-primary w-5 h-5 transition-all focus:ring-0 focus:ring-offset-0 focus:outline-none active:border-primary group-hover:border-primary" type="checkbox">
+                        <input class="category-checkbox rounded border-outline-variant text-primary w-5 h-5 transition-all focus:ring-0 focus:ring-offset-0 focus:outline-none active:border-primary group-hover:border-primary" type="checkbox">
                         <span class="ml-3 text-body-md font-body-md text-on-surface-variant group-hover:text-primary">Accessories</span>
                     </label>
                 </div>
@@ -199,60 +204,73 @@
                 </div>
             </section>
 
-                <section>
-                    <h3 class="text-label-md font-label-md text-on-surface uppercase tracking-wider mb-4">Ratings</h3>
-                    <div class="space-y-2">
-                        <button class="flex items-center text-tertiary hover:opacity-80 transition-opacity">
-                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="ml-2 text-label-sm font-label-sm text-on-surface-variant">&amp; Up</span>
-                        </button>
-                        <button class="flex items-center text-tertiary hover:opacity-80 transition-opacity">
-                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="material-symbols-outlined">star</span>
-                            <span class="ml-2 text-label-sm font-label-sm text-on-surface-variant">&amp; Up</span>
-                        </button>
-                    </div>
-                </section>
+            <section>
+                <h3 class="text-label-md font-label-md text-on-surface uppercase tracking-wider mb-4">
+                    Ratings
+                </h3>
+            
+                <div class="space-y-2">
+                    <button class="rating-btn flex items-center text-tertiary/70 opacity-70 hover:opacity-100 transition-all duration-200 transform scale-100 p-1 rounded-lg focus:outline-none cursor-pointer">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="ml-2 text-label-sm font-label-sm text-on-surface-variant">
+                            & Up
+                        </span>
+                    </button>
+            
+                    <button class="rating-btn flex items-center text-tertiary/70 opacity-70 hover:opacity-100 transition-all duration-200 transform scale-100 p-1 rounded-lg focus:outline-none cursor-pointer">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="ml-2 text-label-sm font-label-sm text-on-surface-variant">
+                            & Up
+                        </span>
+                    </button>
+                </div>
+            </section>
 
                 <section>
-                    <h3 class="text-label-md font-label-md text-on-surface uppercase tracking-wider mb-4">Color</h3>
+                    <h3 class="text-label-md font-label-md text-on-surface uppercase tracking-wider mb-4">
+                        Color
+                    </h3>
+                
                     <div class="flex flex-wrap gap-3">
-                        <button class="w-8 h-8 rounded-full bg-on-background border-2 border-background ring-1 ring-outline-variant active:ring-primary transition-all"></button>
-                        <button class="w-8 h-8 rounded-full bg-surface-variant border-2 border-background ring-1 ring-outline-variant active:ring-primary transition-all"></button>
-                        <button class="w-8 h-8 rounded-full bg-primary border-2 border-background ring-1 ring-outline-variant active:ring-primary transition-all"></button>
-                        <button class="w-8 h-8 rounded-full bg-secondary-container border-2 border-background ring-1 ring-outline-variant active:ring-primary transition-all"></button>
+                        <button class="color-btn w-8 h-8 rounded-full bg-on-background border-2 border-background ring-2 ring-primary scale-105 transition-all focus:outline-none cursor-pointer"></button>
+                        <button class="color-btn w-8 h-8 rounded-full bg-surface-variant border-2 border-background ring-1 ring-outline-variant hover:ring-primary transition-all focus:outline-none cursor-pointer"></button>
+                        <button class="color-btn w-8 h-8 rounded-full bg-primary border-2 border-background ring-1 ring-outline-variant hover:ring-primary transition-all focus:outline-none cursor-pointer"></button>            
+                        <button class="color-btn w-8 h-8 rounded-full bg-secondary-container border-2 border-background ring-1 ring-outline-variant hover:ring-primary transition-all focus:outline-none cursor-pointer"></button>
                     </div>
                 </section>
 
                 <section>
-                    <h3 class="text-label-md font-label-md text-on-surface uppercase tracking-wider mb-4">Size</h3>
+                    <h3 class="text-label-md font-label-md text-on-surface uppercase tracking-wider mb-4"> Size</h3>
                     <div class="grid grid-cols-3 gap-2">
-                        <button class="py-2 border border-outline-variant rounded-lg text-label-sm font-label-sm hover:border-primary hover:text-primary transition-all">XS</button>
-                        <button class="py-2 border border-primary bg-primary/5 rounded-lg text-label-sm font-label-sm text-primary transition-all">S</button>
-                        <button class="py-2 border border-outline-variant rounded-lg text-label-sm font-label-sm hover:border-primary hover:text-primary transition-all">M</button>
-                        <button class="py-2 border border-outline-variant rounded-lg text-label-sm font-label-sm hover:border-primary hover:text-primary transition-all">L</button>
-                        <button class="py-2 border border-outline-variant rounded-lg text-label-sm font-label-sm hover:border-primary hover:text-primary transition-all">XL</button>
+                        <button class="size-btn py-2 border border-primary bg-primary/5 rounded-lg text-label-sm text-primary font-label-sm hover:border-primary hover:text-primary transition-all focus:outline-none focus:ring-0 active:scale-95 cursor-pointer">    M</button>                
+                        <button class="size-btn py-2 border border-outline-variant rounded-lg text-label-sm font-label-sm hover:border-primary hover:text-primary transition-all focus:outline-none focus:ring-0 active:scale-95 cursor-pointer">     L </button>
+                        <button class="size-btn py-2 border border-outline-variant rounded-lg text-label-sm font-label-sm hover:border-primary hover:text-primary transition-all focus:outline-none focus:ring-0 active:scale-95 cursor-pointer">    XL</button>
                     </div>
                 </section>
+
+                <button type="button" class="sidebar-search-btn w-full flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg text-label-sm font-label-sm font-semibold transition-all hover:opacity-95 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-green-600/30 cursor-pointer">
+                    <span class="material-symbols-outlined text-[20px]">search</span>
+                    Search
+                </button>
             </aside>
 
             <div class="flex-1">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
-                    <span class="text-body-md font-body-md text-on-surface-variant">Showing <span class="text-on-surface font-semibold">12</span> of <span class="text-on-surface font-semibold">48</span> items</span>
+                    <span class="text-body-md font-body-md text-on-surface-variant">Showing <span class="text-on-surface font-semibold">6</span> of <span class="text-on-surface font-semibold">48</span> items</span>
                     <div class="flex items-center space-x-4">
                         <label class="text-label-md font-label-md text-outline">Sort by:</label>
                         <select class="bg-surface-container-low border-none rounded-lg py-2 pl-4 pr-10 text-body-md font-body-md text-on-surface focus:ring-2 focus:ring-primary/20 cursor-pointer">
-                            <option>Newest First</option>
+                            <option>A to Z</option>
                             <option>Price: Low to High</option>
                             <option>Price: High to Low</option>
-                            <option>Best Selling</option>
                         </select>
                     </div>
                 </div>
@@ -267,7 +285,10 @@
                             </button>
                         </div>
                         <div class="p-6">
-                            <h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-1">Aura Sound P1</h3>
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-body-lg text-body-lg font-bold text-on-surface">Aura Sound P1</h3>
+                                <span class="w-4 h-4 rounded-full bg-black border border-outline-variant shrink-0 transition-transform duration-300 group-hover:scale-110"></span>
+                            </div>
                             <p class="text-label-md font-label-md text-on-surface-variant mb-3">Professional Noise Cancelling</p>
                             <div class="flex items-center justify-between">
                                 <span class="text-headline-md font-headline-md text-primary">$299.00</span>
@@ -275,7 +296,7 @@
                             </div>
                         </div>
                     </div>
-
+                
                     <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] group transition-all duration-300 border border-primary/0 hover:border-primary/10">
                         <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Horizon Timepiece" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbIosjm1TBmVRAjElxiJvY91OHbdiz0Gv3buy-eMilHptWribkPMk9o5cpYgkb6mlSwjufVZCWQ65OQL7kTUKffBfJ7fPfJ_ZfrtZCrgNMnaZk3KVyTlZ3oUhHC0BJ5K7FZkT1FwoJpZzlwuKkY3yl47pMP-FFtmSTU1aHAUwCh-SRX6AilOX7uba0APy0ut_Dp65rabc8HhPX1SvYRK7xtXKP_tE3A1kPn0JGmKhqXmcgv2QGEWbNGbX6FINiKfOlyRavBjoHnQ">
@@ -284,7 +305,10 @@
                             </button>
                         </div>
                         <div class="p-6">
-                            <h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-1">Horizon Timepiece</h3>
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-body-lg text-body-lg font-bold text-on-surface">Horizon Timepiece</h3>
+                                <span class="w-4 h-4 rounded-full bg-white border border-outline-variant shrink-0 transition-transform duration-300 group-hover:scale-110"></span>
+                            </div>
                             <p class="text-label-md font-label-md text-on-surface-variant mb-3">Minimalist Analog Core</p>
                             <div class="flex items-center justify-between">
                                 <span class="text-headline-md font-headline-md text-primary">$185.00</span>
@@ -292,17 +316,20 @@
                             </div>
                         </div>
                     </div>
-
+                
                     <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] group transition-all duration-300 border border-primary/0 hover:border-primary/10">
                         <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Aura Pad X" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6iwGw0I8ok5K3ogVeFboRWz8yHu_KnVZfbyhyU-IVYtHfXrHJMW571fna3Rax4_vQBFkjpqqY58L_YID2csLWaM6L063q9dZMiNN7RBD4chYnpylgsCR3K3Y2eqSdKkcb8N_MAUZBf22yfvcNZ5ie3EbWm3ywxDiCpbwSDxEfKaRQt0Zbg-j9eyCbrjLMgt-t4Ecj1VsoaiRJhKRqPftWsBDO1-v-NEaIMp-pQACrM4cXtzToHqbF9hIVzh6S0lJkhYMzkaObVw">
-                            <span class="absolute top-4 left-4 bg-tertiary-container/10 text-tertiary text-label-sm font-label-sm px-3 py-1 rounded-full">Sale</span>
+                            <span class="absolute top-4 left-4 bg-tertiary-container/10 text-tertiary-container text-label-sm font-label-sm px-3 py-1 rounded-full">Sale</span>
                             <button type="button" class="wishlist-btn absolute bottom-4 right-4 flex items-center justify-center size-10 bg-white/90 backdrop-blur rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300" aria-label="Add to wishlist" aria-pressed="false">
                                 <span class="wishlist-icon material-symbols-outlined text-on-background text-[24px] leading-none transition-colors transition-transform duration-300 ease-out origin-center">favorite</span>
                             </button>
                         </div>
                         <div class="p-6">
-                            <h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-1">Aura Pad X</h3>
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-body-lg text-body-lg font-bold text-on-surface">Aura Pad X</h3>
+                                <span class="w-4 h-4 rounded-full bg-white border border-outline-variant shrink-0 transition-transform duration-300 group-hover:scale-110"></span>
+                            </div>
                             <p class="text-label-md font-label-md text-on-surface-variant mb-3">12.9" Pro Display</p>
                             <div class="flex items-center justify-between">
                                 <div class="flex flex-col">
@@ -313,7 +340,7 @@
                             </div>
                         </div>
                     </div>
-
+                
                     <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] group transition-all duration-300 border border-primary/0 hover:border-primary/10">
                         <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Vector Frames" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaRdkZ-m9k-0v1VCUhJJ2Asu40UHFSAEeGKImL8LvDd14ea0UCTgsfGCssTNDGnL-QNBiWp7w6tP4WgtgBFWSb3NwtME8LeoqE6A5P_tkoRrgS_s8NhclDO6m5xtdspN9muHT8KYKMqlrPjIG7Ke3E9YukEHNpk9SP5Ch1pUQmitv9JZHxwJjC-U32kUPEc7sS1cnQUvLTLnR0SnGuySGdXTJT2Yw9tuIRaRyH6enG8QVI0AQCm1lygn0w2PHtXXfA6RWAPJw30A">
@@ -322,7 +349,10 @@
                             </button>
                         </div>
                         <div class="p-6">
-                            <h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-1">Vector Frames</h3>
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-body-lg text-body-lg font-bold text-on-surface">Vector Frames</h3>
+                                <span class="w-4 h-4 rounded-full bg-black border border-outline-variant shrink-0 transition-transform duration-300 group-hover:scale-110"></span>
+                            </div>
                             <p class="text-label-md font-label-md text-on-surface-variant mb-3">Polarized Minimalist Design</p>
                             <div class="flex items-center justify-between">
                                 <span class="text-headline-md font-headline-md text-primary">$120.00</span>
@@ -330,7 +360,7 @@
                             </div>
                         </div>
                     </div>
-
+                
                     <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] group transition-all duration-300 border border-primary/0 hover:border-primary/10">
                         <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Linear Core KB" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd8OsWJSuCuj22hcpEDEJLvCK41r7N2xfN5USE0ZaSq8q1k6Ajp4CDuT1adz9XeQrcVpLDNm5ymH3o-vgNjumjY_INw0OK4X2FizjfraBaxEZTunbrzNGc6E8O6ogJR6Q_I5MxRjKjT-UTbYD55BvzJA715YhiY2Ta32I3BjPa0cyptR6rJvOp-ImToFVg1mCXdNBuXNTKW3dWT2TsM39j36idT-cNRq7Lk4GbvdB5wWsynKphDlNq5P355H0PyA2lBQWGKEGg-Q">
@@ -339,7 +369,10 @@
                             </button>
                         </div>
                         <div class="p-6">
-                            <h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-1">Linear Core KB</h3>
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-body-lg text-body-lg font-bold text-on-surface">Linear Core KB</h3>
+                                <span class="w-4 h-4 rounded-full bg-white border border-outline-variant shrink-0 transition-transform duration-300 group-hover:scale-110"></span>
+                            </div>
                             <p class="text-label-md font-label-md text-on-surface-variant mb-3">Mechanical Wireless Tech</p>
                             <div class="flex items-center justify-between">
                                 <span class="text-headline-md font-headline-md text-primary">$210.00</span>
@@ -347,7 +380,7 @@
                             </div>
                         </div>
                     </div>
-
+                
                     <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] group transition-all duration-300 border border-primary/0 hover:border-primary/10">
                         <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Flow Mouse" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY1R4GTH9RWNp8oWFhUdFDrr4fou548kyqhCZ4uLBZkhIVV1KxlXRGV8WoUsDMhfBW2NDaLE3ZKK5k3g9e5jOXSsJmjhqT6g31w9GYaEquWdeDQpqDDKemh1jb78pu4grQBJqihSYPwrUient_1LiHFws_8i_kEEojxGOyvg-LV9NPJx-XhkRARivqhcu2InHG7gde69lLDDmCDQawDbdekVseTY0RGIP4_LD2UO6ojj-Gt_fW4B-M-mUoMvvRF7QNEV_pEPEHXw">
@@ -356,7 +389,10 @@
                             </button>
                         </div>
                         <div class="p-6">
-                            <h3 class="font-body-lg text-body-lg font-bold text-on-surface mb-1">Flow Mouse</h3>
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-body-lg text-body-lg font-bold text-on-surface">Flow Mouse</h3>
+                                <span class="w-4 h-4 rounded-full bg-white border border-outline-variant shrink-0 transition-transform duration-300 group-hover:scale-110"></span>
+                            </div>
                             <p class="text-label-md font-label-md text-on-surface-variant mb-3">Ultra-Precision Ergonomic</p>
                             <div class="flex items-center justify-between">
                                 <span class="text-headline-md font-headline-md text-primary">$89.00</span>
