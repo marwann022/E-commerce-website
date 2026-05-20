@@ -152,6 +152,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "bg-surface-variant": "white",
     "bg-primary": "primary",
     "bg-secondary-container": "secondary",
+    "bg-red-600": "red",
+    "bg-green-600": "green",
   };
 
   let products = [];
@@ -168,10 +170,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function parseColor(card) {
     const swatch = card.querySelector(".p-6 .rounded-full");
     if (!swatch) return null;
+    if (swatch.dataset.color) return swatch.dataset.color;
     if (swatch.classList.contains("bg-black")) return "black";
     if (swatch.classList.contains("bg-white")) return "white";
     if (swatch.classList.contains("bg-slate-400")) return "silver";
     if (swatch.classList.contains("bg-blue-600")) return "blue";
+    if (swatch.classList.contains("bg-primary")) return "primary";
+    if (swatch.classList.contains("bg-secondary-container")) return "secondary";
     if (swatch.classList.contains("bg-red-600")) return "red";
     if (swatch.classList.contains("bg-green-600")) return "green";
     return null;
@@ -244,11 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getActiveFilterColor() {
     const activeBtn = document.querySelector(".color-btn.ring-2.ring-primary");
-    if (!activeBtn) return null;
-    const bgClass = Array.from(activeBtn.classList).find(
-      (cls) => FILTER_COLOR_MAP[cls]
-    );
-    return bgClass ? FILTER_COLOR_MAP[bgClass] : null;
+    return activeBtn ? activeBtn.dataset.color || null : null;
   }
 
   function getMaxPrice() {
