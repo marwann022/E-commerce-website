@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
     <meta charset="utf-8">
@@ -264,7 +264,7 @@
 
             <div class="flex-1">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
-                    <span class="text-body-md font-body-md text-on-surface-variant">Showing <span class="text-on-surface font-semibold">6</span> of <span class="text-on-surface font-semibold">48</span> items</span>
+                    <span class="text-body-md font-body-md text-on-surface-variant">Showing <span class="text-on-surface font-semibold">6</span> of <span class="text-on-surface font-semibold">12</span> items</span>
                     <div class="flex items-center space-x-4">
                         <label class="text-label-md font-label-md text-outline">Sort by:</label>
                         <select class="bg-surface-container-low border-none rounded-lg py-2 pl-4 pr-10 text-body-md font-body-md text-on-surface focus:ring-2 focus:ring-primary/20 cursor-pointer">
@@ -275,7 +275,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
                     <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] group transition-all duration-300 border border-primary/0 hover:border-primary/10">
                         <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Aura Sound P1 Headphones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASb5wqMGITvoAkIqgNSgdeADKq4oYyrXu9JS4qcr_ECWqtphiLYSd322SL5DvEkte53zmC1bNNgdadsoNU5sGyJbz53H7nzOB1Ur_TZ7rSf-1IjpTij4XpMCr3SuV2c9VCb4M4NrsBCeI1HdbB5ZyytHW9IoGguXS8U0rDUD4CFsCrRWAk3IWc_pRVwkimiMEnnDjE0SRm57TdNC2pc8jgBo383955Z_qAcMLTC1w71MOaB8hPeTNXP2ZeOe0P7PGWWcYTdQ8Xlg">
@@ -400,23 +400,149 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="mt-16 flex flex-col items-center gap-6">
+                    <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] group transition-all duration-300 border border-primary/0 hover:border-primary/10" data-category="Audio">
+                        <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Pulse Air Max Wireless Headphones" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80&auto=format&fit=crop">
+                            <span class="absolute top-4 left-4 bg-secondary-container/10 text-secondary-container text-label-sm font-label-sm px-3 py-1 rounded-full">New</span>
+                            <button type="button" class="wishlist-btn absolute bottom-4 right-4 flex items-center justify-center size-10 bg-white/90 backdrop-blur rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300" aria-label="Add to wishlist" aria-pressed="false">
+                                <span class="wishlist-icon material-symbols-outlined text-on-background text-[24px] leading-none transition-colors transition-transform duration-300 ease-out origin-center">favorite</span>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-body-lg text-body-lg font-bold text-on-surface">Pulse Air Max</h3>
+                                <span class="w-4 h-4 rounded-full bg-black border border-outline-variant shrink-0 transition-transform duration-300 group-hover:scale-110"></span>
+                            </div>
+                            <p class="text-label-md font-label-md text-on-surface-variant mb-3">Studio-Grade Wireless Headphones</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-headline-md font-headline-md text-primary">$349.00</span>
+                                <button class="bg-primary text-on-primary text-label-sm font-label-sm px-6 py-3 rounded-full hover:opacity-90 transition-all active:scale-95">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] group transition-all duration-300 border border-primary/0 hover:border-primary/10" data-category="Wearables">
+                        <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Nova Watch S Smart Watch" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80&auto=format&fit=crop">
+                            <button type="button" class="wishlist-btn absolute bottom-4 right-4 flex items-center justify-center size-10 bg-white/90 backdrop-blur rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300" aria-label="Add to wishlist" aria-pressed="false">
+                                <span class="wishlist-icon material-symbols-outlined text-on-background text-[24px] leading-none transition-colors transition-transform duration-300 ease-out origin-center">favorite</span>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-body-lg text-body-lg font-bold text-on-surface">Nova Watch S</h3>
+                                <span class="w-4 h-4 rounded-full bg-slate-400 border border-outline-variant shrink-0 transition-transform duration-300 group-hover:scale-110"></span>
+                            </div>
+                            <p class="text-label-md font-label-md text-on-surface-variant mb-3">AMOLED Fitness Smart Watch</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-headline-md font-headline-md text-primary">$249.00</span>
+                                <button class="bg-primary text-on-primary text-label-sm font-label-sm px-6 py-3 rounded-full hover:opacity-90 transition-all active:scale-95">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] group transition-all duration-300 border border-primary/0 hover:border-primary/10" data-category="Home Office">
+                        <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Cipher Pro 75 Mechanical Keyboard" src="https://images.unsplash.com/photo-1768445386103-81dd131586a2?w=800&q=80&auto=format&fit=crop">
+                            <span class="absolute top-4 left-4 bg-tertiary-container/10 text-tertiary-container text-label-sm font-label-sm px-3 py-1 rounded-full">Sale</span>
+                            <button type="button" class="wishlist-btn absolute bottom-4 right-4 flex items-center justify-center size-10 bg-white/90 backdrop-blur rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300" aria-label="Add to wishlist" aria-pressed="false">
+                                <span class="wishlist-icon material-symbols-outlined text-on-background text-[24px] leading-none transition-colors transition-transform duration-300 ease-out origin-center">favorite</span>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-body-lg text-body-lg font-bold text-on-surface">Cipher Pro 75</h3>
+                                <span class="w-4 h-4 rounded-full bg-primary border border-outline-variant shrink-0 transition-transform duration-300 group-hover:scale-110"></span>
+                            </div>
+                            <p class="text-label-md font-label-md text-on-surface-variant mb-3">Low-Profile Mechanical Keyboard</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex flex-col">
+                                    <span class="text-headline-md font-headline-md text-primary">$159.00</span>
+                                    <span class="text-label-sm font-label-sm text-outline line-through">$199.00</span>
+                                </div>
+                                <button class="bg-primary text-on-primary text-label-sm font-label-sm px-6 py-3 rounded-full hover:opacity-90 transition-all active:scale-95">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] group transition-all duration-300 border border-primary/0 hover:border-primary/10" data-category="Accessories">
+                        <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Lucent Optics Minimal Glasses" src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800&q=80&auto=format&fit=crop">
+                            <button type="button" class="wishlist-btn absolute bottom-4 right-4 flex items-center justify-center size-10 bg-white/90 backdrop-blur rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300" aria-label="Add to wishlist" aria-pressed="false">
+                                <span class="wishlist-icon material-symbols-outlined text-on-background text-[24px] leading-none transition-colors transition-transform duration-300 ease-out origin-center">favorite</span>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-body-lg text-body-lg font-bold text-on-surface">Lucent Optics</h3>
+                                <span class="w-4 h-4 rounded-full bg-green-600 border border-outline-variant shrink-0 transition-transform duration-300 group-hover:scale-110"></span>
+                            </div>
+                            <p class="text-label-md font-label-md text-on-surface-variant mb-3">Ultra-Light Titanium Frames</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-headline-md font-headline-md text-primary">$135.00</span>
+                                <button class="bg-primary text-on-primary text-label-sm font-label-sm px-6 py-3 rounded-full hover:opacity-90 transition-all active:scale-95">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] group transition-all duration-300 border border-primary/0 hover:border-primary/10" data-category="Home Office">
+                        <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Slate Tab Pro Tablet" src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800&q=80&auto=format&fit=crop">
+                            <span class="absolute top-4 left-4 bg-secondary-container/10 text-secondary-container text-label-sm font-label-sm px-3 py-1 rounded-full">New</span>
+                            <button type="button" class="wishlist-btn absolute bottom-4 right-4 flex items-center justify-center size-10 bg-white/90 backdrop-blur rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300" aria-label="Add to wishlist" aria-pressed="false">
+                                <span class="wishlist-icon material-symbols-outlined text-on-background text-[24px] leading-none transition-colors transition-transform duration-300 ease-out origin-center">favorite</span>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-body-lg text-body-lg font-bold text-on-surface">Slate Tab Pro</h3>
+                                <span class="w-4 h-4 rounded-full bg-red-600 border border-outline-variant shrink-0 transition-transform duration-300 group-hover:scale-110"></span>
+                            </div>
+                            <p class="text-label-md font-label-md text-on-surface-variant mb-3">11" Liquid Retina Tablet</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-headline-md font-headline-md text-primary">$649.00</span>
+                                <button class="bg-primary text-on-primary text-label-sm font-label-sm px-6 py-3 rounded-full hover:opacity-90 transition-all active:scale-95">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] group transition-all duration-300 border border-primary/0 hover:border-primary/10" data-category="Accessories">
+                        <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="ZenLink Hub USB-C Dock" src="https://images.unsplash.com/photo-1760376789487-994070337c76?w=800&q=80&auto=format&fit=crop">
+                            <span class="absolute top-4 left-4 bg-tertiary-container/10 text-tertiary-container text-label-sm font-label-sm px-3 py-1 rounded-full">Sale</span>
+                            <button type="button" class="wishlist-btn absolute bottom-4 right-4 flex items-center justify-center size-10 bg-white/90 backdrop-blur rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300" aria-label="Add to wishlist" aria-pressed="false">
+                                <span class="wishlist-icon material-symbols-outlined text-on-background text-[24px] leading-none transition-colors transition-transform duration-300 ease-out origin-center">favorite</span>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-body-lg text-body-lg font-bold text-on-surface">ZenLink Hub</h3>
+                                <span class="w-4 h-4 rounded-full bg-black border border-outline-variant shrink-0 transition-transform duration-300 group-hover:scale-110"></span>
+                            </div>
+                            <p class="text-label-md font-label-md text-on-surface-variant mb-3">7-in-1 USB-C Power Dock</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex flex-col">
+                                    <span class="text-headline-md font-headline-md text-primary">$59.00</span>
+                                    <span class="text-label-sm font-label-sm text-outline line-through">$79.00</span>
+                                </div>
+                                <button class="bg-primary text-on-primary text-label-sm font-label-sm px-6 py-3 rounded-full hover:opacity-90 transition-all active:scale-95">Add to Cart</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+                <div id="product-pagination" class="mt-16 flex flex-col items-center gap-6">
                     <div class="flex items-center space-x-2">
-                        <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all">
+                        <button type="button" id="pagination-prev" aria-label="Previous page" class="pagination-arrow w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all active:scale-95">
                             <span class="material-symbols-outlined">chevron_left</span>
                         </button>
-                        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-on-primary font-label-md">1</button>
-                        <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all font-label-md">2</button>
-                        <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all font-label-md">3</button>
-                        <span class="text-outline">...</span>
-                        <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all font-label-md">8</button>
-                        <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all">
+                        <div id="pagination-pages" class="flex items-center space-x-2" role="navigation" aria-label="Product pages"></div>
+                        <button type="button" id="pagination-next" aria-label="Next page" class="pagination-arrow w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all active:scale-95">
                             <span class="material-symbols-outlined">chevron_right</span>
                         </button>
                     </div>
-                    <p class="text-label-sm font-label-sm text-outline">Page 1 of 8</p>
                 </div>
             </div>
         </div>

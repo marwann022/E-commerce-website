@@ -13,36 +13,41 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  document.querySelectorAll(".wishlist-btn").forEach((btn) => {
-    const icon = btn.querySelector(".wishlist-icon");
+  function initWishlistButtons() {
+    document.querySelectorAll(".wishlist-btn:not([data-wishlist-init])").forEach((btn) => {
+      const icon = btn.querySelector(".wishlist-icon");
+      btn.dataset.wishlistInit = "true";
 
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      e.preventDefault();
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        e.preventDefault();
 
-      icon.classList.toggle("active");
-      icon.classList.toggle("text-red-500");
-      icon.classList.toggle("text-on-background");
-      icon.classList.toggle("scale-110");
+        icon.classList.toggle("active");
+        icon.classList.toggle("text-red-500");
+        icon.classList.toggle("text-on-background");
+        icon.classList.toggle("scale-110");
 
-      const isActive = icon.classList.contains("active");
+        const isActive = icon.classList.contains("active");
 
-      if (isActive) {
-        icon.style.fontVariationSettings = "'FILL' 1";
-        setTimeout(() => icon.classList.remove("scale-110"), 200);
-      } else {
-        icon.style.fontVariationSettings = "'FILL' 0";
-        icon.classList.remove("scale-110");
-      }
+        if (isActive) {
+          icon.style.fontVariationSettings = "'FILL' 1";
+          setTimeout(() => icon.classList.remove("scale-110"), 200);
+        } else {
+          icon.style.fontVariationSettings = "'FILL' 0";
+          icon.classList.remove("scale-110");
+        }
 
-      btn.setAttribute("aria-pressed", String(isActive));
-      btn.setAttribute(
-        "aria-label",
-        isActive ? "Remove from wishlist" : "Add to wishlist"
-      );
-      btn.blur();
+        btn.setAttribute("aria-pressed", String(isActive));
+        btn.setAttribute(
+          "aria-label",
+          isActive ? "Remove from wishlist" : "Add to wishlist"
+        );
+        btn.blur();
+      });
     });
-  });
+  }
+
+  initWishlistButtons();
 
   const sizeButtons = document.querySelectorAll(".size-btn");
   sizeButtons.forEach((btn) => {
@@ -104,13 +109,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  const productGrid = document.querySelector(".flex-1 > .grid");
+  const productGrid = document.getElementById("product-grid");
   const sortSelect = document.querySelector(".flex-1 select");
   const searchBtn = document.querySelector(".sidebar-search-btn");
   const countSpans = document.querySelectorAll(
     ".flex-1 > .flex span.text-on-surface.font-semibold"
   );
   const categorySection = document.querySelector("aside section");
+  const paginationRoot = document.getElementById("product-pagination");
+  const paginationPrev = document.getElementById("pagination-prev");
+  const paginationNext = document.getElementById("pagination-next");
+  const paginationPages = document.getElementById("pagination-pages");
+
+  const ITEMS_PER_PAGE = 6;
+  const PAGE_BTN_BASE =
+    "w-10 h-10 flex items-center justify-center rounded-lg transition-all font-label-md active:scale-95";
+  const PAGE_BTN_ACTIVE = "bg-primary text-on-primary";
+  const PAGE_BTN_INACTIVE =
+    "border border-outline-variant text-on-surface-variant hover:bg-surface-container";
+
+  let currentPage = 1;
+  let isPaginating = false;
+  const CARD_TRANSITION_MS = 320;
 
   const CATEGORY_BY_TITLE = {
     "Aura Sound P1": "Audio",
@@ -119,6 +139,12 @@ document.addEventListener("DOMContentLoaded", () => {
     "Vector Frames": "Accessories",
     "Linear Core KB": "Home Office",
     "Flow Mouse": "Home Office",
+    "Pulse Air Max": "Audio",
+    "Nova Watch S": "Wearables",
+    "Cipher Pro 75": "Home Office",
+    "Lucent Optics": "Accessories",
+    "Slate Tab Pro": "Home Office",
+    "ZenLink Hub": "Accessories",
   };
 
   const FILTER_COLOR_MAP = {
@@ -144,6 +170,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!swatch) return null;
     if (swatch.classList.contains("bg-black")) return "black";
     if (swatch.classList.contains("bg-white")) return "white";
+    if (swatch.classList.contains("bg-slate-400")) return "silver";
+    if (swatch.classList.contains("bg-blue-600")) return "blue";
+    if (swatch.classList.contains("bg-red-600")) return "red";
+    if (swatch.classList.contains("bg-green-600")) return "green";
     return null;
   }
 
@@ -286,13 +316,154 @@ document.addEventListener("DOMContentLoaded", () => {
     productGrid.appendChild(emptyStateEl);
   }
 
-  function updateCounter(visibleCount) {
+  function updateCounter(pageVisibleCount, totalMatching) {
     if (countSpans.length < 2) return;
-    countSpans[0].textContent = String(visibleCount);
-    countSpans[1].textContent = String(products.length);
+    countSpans[0].textContent = String(pageVisibleCount);
+    countSpans[1].textContent = String(totalMatching);
+  }
+
+  function getTotalPages(itemCount) {
+    return Math.max(1, Math.ceil(itemCount / ITEMS_PER_PAGE));
+  }
+
+  function clampPage(page, totalPages) {
+    return Math.min(Math.max(1, page), totalPages);
+  }
+
+  function getPageSlice(list, page) {
+    const start = (page - 1) * ITEMS_PER_PAGE;
+    return list.slice(start, start + ITEMS_PER_PAGE);
+  }
+
+  function setPageButtonState(button, isActive) {
+    button.className = `${PAGE_BTN_BASE} ${
+      isActive ? PAGE_BTN_ACTIVE : PAGE_BTN_INACTIVE
+    }`;
+    button.setAttribute("aria-current", isActive ? "page" : "false");
+  }
+
+  function setArrowState(button, enabled) {
+    if (!button) return;
+    button.disabled = !enabled;
+    button.setAttribute("aria-disabled", String(!enabled));
+  }
+
+  function renderPaginationControls(totalPages) {
+    if (!paginationPages) return;
+
+    paginationPages.innerHTML = "";
+
+    for (let page = 1; page <= totalPages; page += 1) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = String(page);
+      button.setAttribute("aria-label", `Go to page ${page}`);
+      setPageButtonState(button, page === currentPage);
+      button.addEventListener("click", () => goToPage(page));
+      paginationPages.appendChild(button);
+    }
+
+    setArrowState(paginationPrev, currentPage > 1);
+    setArrowState(paginationNext, currentPage < totalPages);
+
+    if (paginationRoot) {
+      paginationRoot.classList.toggle("hidden", totalPages <= 1);
+    }
+  }
+
+  function cleanupSlideClasses(card) {
+    card.classList.remove(
+      "slide-out-left",
+      "slide-out-right",
+      "slide-in-from-right",
+      "slide-in-from-left",
+      "slide-in-active"
+    );
+  }
+
+  function getVisibleProductCards() {
+    return products
+      .map((p) => p.element)
+      .filter((card) => !card.classList.contains("hidden"));
+  }
+
+  function animatePageChange(targetPage, sorted) {
+    if (!productGrid || isPaginating) return;
+
+    const direction = targetPage > currentPage ? "next" : "prev";
+    const outClass = direction === "next" ? "slide-out-left" : "slide-out-right";
+    const inFromClass =
+      direction === "next" ? "slide-in-from-right" : "slide-in-from-left";
+    const exiting = getVisibleProductCards();
+
+    isPaginating = true;
+
+    exiting.forEach((card) => {
+      cleanupSlideClasses(card);
+      card.classList.add(outClass);
+    });
+
+    window.setTimeout(() => {
+      exiting.forEach((card) => {
+        cleanupSlideClasses(card);
+        card.classList.add("is-hidden", "hidden");
+      });
+
+      currentPage = targetPage;
+      const pageItems = getPageSlice(sorted, currentPage);
+      const entering = pageItems.map((p) => p.element);
+      const visibleSet = new Set(entering);
+
+      sorted.forEach((product) => {
+        productGrid.appendChild(product.element);
+      });
+
+      products.forEach((product) => {
+        const card = product.element;
+        if (visibleSet.has(card)) return;
+        cleanupSlideClasses(card);
+        if (!exiting.includes(card)) {
+          card.classList.add("is-hidden", "hidden");
+        }
+      });
+
+      entering.forEach((card) => {
+        card.classList.remove("hidden", "is-hidden");
+        card.classList.add(inFromClass);
+      });
+
+      requestAnimationFrame(() => {
+        entering.forEach((card) => card.classList.add("slide-in-active"));
+      });
+
+      window.setTimeout(() => {
+        entering.forEach((card) => cleanupSlideClasses(card));
+        updateCounter(pageItems.length, sorted.length);
+        renderPaginationControls(getTotalPages(sorted.length));
+        isPaginating = false;
+      }, CARD_TRANSITION_MS);
+    }, CARD_TRANSITION_MS);
+  }
+
+  function goToPage(page, { animate = true } = {}) {
+    const list = filtersApplied ? getFilteredProducts() : [...products];
+    const sorted = sortProducts(list);
+    const totalPages = getTotalPages(sorted.length);
+    const targetPage = clampPage(page, totalPages);
+
+    if (targetPage === currentPage) return;
+
+    if (animate) {
+      animatePageChange(targetPage, sorted);
+    } else {
+      currentPage = targetPage;
+      renderProducts(sorted, { preservePage: true });
+    }
   }
 
   function setCardVisibility(card, visible) {
+    cleanupSlideClasses(card);
+
     if (visible) {
       card.classList.remove("hidden");
       requestAnimationFrame(() => {
@@ -304,15 +475,23 @@ document.addEventListener("DOMContentLoaded", () => {
         if (card.classList.contains("is-hidden")) {
           card.classList.add("hidden");
         }
-      }, 300);
+      }, CARD_TRANSITION_MS);
     }
   }
 
-  function renderProducts(list) {
+  function renderProducts(list, { preservePage = false } = {}) {
     if (!productGrid) return;
     ensureEmptyState();
-    const visibleSet = new Set(list.map((p) => p.element));
     const sorted = sortProducts(list);
+    const totalPages = getTotalPages(sorted.length);
+
+    if (!preservePage) {
+      currentPage = 1;
+    }
+    currentPage = clampPage(currentPage, totalPages);
+
+    const pageItems = getPageSlice(sorted, currentPage);
+    const visibleSet = new Set(pageItems.map((p) => p.element));
 
     sorted.forEach((product) => {
       productGrid.appendChild(product.element);
@@ -332,22 +511,58 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    updateCounter(list.length);
+    updateCounter(pageItems.length, list.length);
+    renderPaginationControls(totalPages);
   }
 
   function applyFilters() {
     filtersApplied = true;
+    currentPage = 1;
     const filtered = getFilteredProducts();
     renderProducts(filtered);
   }
 
   function applySort() {
+    currentPage = 1;
     const list = filtersApplied ? getFilteredProducts() : [...products];
     renderProducts(list);
   }
 
-  products = extractProducts();
-  applySort();
+  function initPagination() {
+    if (paginationPrev) {
+      paginationPrev.addEventListener("click", () => {
+        if (currentPage > 1) goToPage(currentPage - 1);
+      });
+    }
+
+    if (paginationNext) {
+      paginationNext.addEventListener("click", () => {
+        const list = filtersApplied ? getFilteredProducts() : [...products];
+        const totalPages = getTotalPages(sortProducts(list).length);
+        if (currentPage < totalPages) goToPage(currentPage + 1);
+      });
+    }
+  }
+
+  async function loadNewProductCards() {
+    if (!productGrid) return;
+    try {
+      const response = await fetch("new-product-cards.html");
+      if (!response.ok) return;
+      const html = await response.text();
+      productGrid.insertAdjacentHTML("beforeend", html);
+    } catch (_) {}
+  }
+
+  async function initProductGrid() {
+    await loadNewProductCards();
+    products = extractProducts();
+    initWishlistButtons();
+    applySort();
+  }
+
+  initProductGrid();
+  initPagination();
 
   if (searchBtn) {
     searchBtn.addEventListener("click", applyFilters);
