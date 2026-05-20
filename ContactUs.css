@@ -1,0 +1,407 @@
+/* ── Base ─────────────────────────────────────────── */
+* { 
+  box-sizing: border-box; 
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-outlined.fill-1 {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+details summary::-webkit-details-marker { 
+  display: none; 
+}
+
+/* ── Animations ───────────────────────────────────── */
+.fade-in {
+  animation: fadeUp 0.5s ease both;
+}
+
+@keyframes fadeUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(12px); 
+  }
+
+  to {   
+    opacity: 1; 
+    transform: none; 
+  }
+}
+
+/* ── Field label ──────────────────────────────────── */
+.field-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #494454;
+}
+
+/* ── Unified field input (inputs + textarea) ──────── */
+.field-input,
+textarea.field-input,
+input.field-input {
+  width: 100%;
+  min-height: 3.25rem;
+
+  background: #f1f3ff;
+  border: 1.5px solid #e2dff0;
+  border-radius: 0.9rem;
+
+  padding: 0.95rem 1rem;
+
+  font-size: 0.92rem;
+  font-family: inherit;
+  font-weight: 400;
+  line-height: 1.5;
+
+  color: #141b2b;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    transform 0.15s ease;
+
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: none !important;
+
+  resize: none;
+}
+
+/* Textarea specific */
+textarea.field-input {
+  min-height: 9rem;
+  padding-top: 1rem;
+}
+
+/* Placeholder */
+.field-input::placeholder {
+  color: #a89ec0;
+  opacity: 1;
+}
+
+/* Focus */
+.field-input:focus {
+  border-color: #6b38d4;
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgba(107, 56, 212, 0.12),
+    0 6px 18px rgba(107, 56, 212, 0.08);
+
+  background-image: none !important;
+}
+
+/* Error State */
+.field-input.input-error {
+  border-color: #ba1a1a;
+  background: #fff8f8;
+
+  box-shadow:
+    0 0 0 3px rgba(186, 26, 26, 0.10);
+}
+
+/* Remove autofill weird styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #f1f3ff inset !important;
+  -webkit-text-fill-color: #141b2b !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ── Right-column height alignment ───────────────── */
+.contact-right-col {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.contact-info-card {
+  flex: 1;
+}
+
+/* ── Suppress browser credential / password-manager icons ── */
+.field-input::-webkit-credentials-auto-fill-button,
+.field-input::-webkit-contacts-auto-fill-button,
+.field-input::-webkit-autofill-button,
+.field-input::-webkit-password-edit-icon,
+.field-input::-webkit-textfield-decoration-container,
+.field-input::-webkit-caps-lock-indicator,
+.field-input::-webkit-textfield-decoration-button,
+.field-input::-webkit-clear-button,
+.field-input::-webkit-search-decoration,
+.field-input::-webkit-search-cancel-button,
+.field-input::-webkit-search-results-button,
+.field-input::-webkit-search-results-decoration,
+.field-input::-webkit-textfield-decoration-container {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+
+/* ── Field error text ─────────────────────────────── */
+.field-error {
+  font-size: 0.72rem;
+  color: #ba1a1a;
+  font-weight: 500;
+}
+
+/* ── Submit button ────────────────────────────────── */
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  background: #6b38d4;
+  color: #ffffff;
+
+  font-weight: 600;
+  font-size: 0.875rem;
+
+  padding: 0.875rem 2rem;
+
+  border: none;
+  border-radius: 999px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s,
+    box-shadow 0.2s,
+    transform 0.15s;
+
+  font-family: inherit;
+}
+
+.submit-btn:hover {
+  background: #5a2db8;
+  box-shadow: 0 6px 20px rgba(107, 56, 212, 0.3);
+}
+
+.submit-btn:active { 
+  transform: scale(0.97); 
+}
+
+.submit-btn:disabled { 
+  opacity: 0.65; 
+  cursor: not-allowed; 
+  transform: none; 
+}
+
+/* ── Info rows ────────────────────────────────────── */
+.info-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.info-icon {
+  color: #6b38d4;
+  background: #e9ddff;
+  padding: 0.625rem;
+  border-radius: 0.75rem;
+  flex-shrink: 0;
+}
+
+.info-label {
+  margin: 0 0 0.2rem;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+
+  color: #494454;
+}
+
+.info-value {
+  margin: 0;
+
+  font-size: 0.875rem;
+  color: #141b2b;
+
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+/* ── Static map ───────────────────────────────────── */
+.map-wrap {
+  position: relative;
+  height: 16rem;
+
+  background: #e9edff;
+  overflow: hidden;
+}
+
+.map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Pin centred */
+.map-pin-overlay {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -100%);
+
+  pointer-events: none;
+
+  filter: drop-shadow(0 3px 6px rgba(107,56,212,0.45));
+}
+
+/* Open in map button */
+.map-link-btn {
+  position: absolute;
+
+  bottom: 0.75rem;
+  right: 0.75rem;
+
+  background: rgba(107, 56, 212, 0.9);
+  color: #fff;
+
+  padding: 0.5rem;
+
+  border-radius: 0.65rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 4px 12px rgba(107, 56, 212, 0.35);
+
+  transition: background 0.2s;
+
+  text-decoration: none;
+}
+
+.map-link-btn:hover { 
+  background: #6b38d4; 
+}
+
+.map-link-btn .material-symbols-outlined { 
+  font-size: 1.1rem; 
+}
+
+/* ── FAQ ──────────────────────────────────────────── */
+.faq-item {
+  background: #f1f3ff;
+
+  border-radius: 0.75rem;
+  overflow: hidden;
+
+  transition: background 0.2s;
+}
+
+.faq-item[open] { 
+  background: #e9edff; 
+}
+
+.faq-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1.25rem 1.5rem;
+
+  cursor: pointer;
+  list-style: none;
+
+  color: #141b2b;
+}
+
+.faq-summary::-webkit-details-marker { 
+  display: none; 
+}
+
+.faq-body {
+  margin: 0;
+
+  padding: 0 1.5rem 1.25rem;
+
+  font-size: 0.875rem;
+  color: #494454;
+
+  line-height: 1.75;
+}
+
+
+
+
+:root {
+    --background: #f9f9ff;
+    --inverse-surface: #293040;
+    --on-background: #141b2b;
+    --surface-variant: #dce2f7;
+    --on-primary-fixed-variant: #5516be;
+    --outline-variant: #cbc3d7;
+    --on-tertiary-fixed-variant: #653e00;
+    --inverse-on-surface: #edf0ff;
+    --secondary-container: #fd56a7;
+    --surface-container-lowest: #ffffff;
+    --on-secondary: #ffffff;
+    --secondary-fixed: #ffd9e4;
+    --on-error: #ffffff;
+    --tertiary-container: #a36700;
+    --error: #ba1a1a;
+    --outline: #7b7486;
+    --tertiary: #825100;
+    --on-surface: #141b2b;
+    --on-secondary-fixed: #3e0022;
+    --surface-container-low: #f1f3ff;
+    --on-primary-container: #fffbff;
+    --on-secondary-container: #600037;
+    --on-tertiary-fixed: #2a1700;
+    --surface-container: #e9edff;
+    --surface-container-high: #e1e8fd;
+    --secondary-fixed-dim: #ffb0cd;
+    --on-secondary-fixed-variant: #8c0053;
+    --tertiary-fixed: #ffddb8;
+    --on-tertiary: #ffffff;
+    --surface-bright: #f9f9ff;
+    --primary-container: #8455ef;
+    --primary-fixed-dim: #d0bcff;
+    --inverse-primary: #d0bcff;
+    --surface-dim: #d3daef;
+    --on-error-container: #93000a;
+    --on-primary: #ffffff;
+    --tertiary-fixed-dim: #ffb95f;
+    --on-surface-variant: #494454;
+    --primary-fixed: #e9ddff;
+    --on-tertiary-container: #fffbff;
+    --surface: #f9f9ff;
+    --secondary: #b4136d;
+    --error-container: #ffdad6;
+    --surface-tint: #6d3bd7;
+    --on-primary-fixed: #23005c;
+    --surface-container-highest: #dce2f7;
+    --primary: #6b38d4;
+    --gutter: 24px;
+    --margin-desktop: 40px;
+    --max-w-container-max: 1280px;
+}

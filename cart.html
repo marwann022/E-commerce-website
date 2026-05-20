@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Shop</title>
+ <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            background: "#f9f9ff",
+            "inverse-surface": "#293040",
+            "on-background": "#141b2b",
+            "surface-variant": "#dce2f7",
+            "on-primary-fixed-variant": "#5516be",
+            "outline-variant": "#cbc3d7",
+            "on-tertiary-fixed-variant": "#653e00",
+            "inverse-on-surface": "#edf0ff",
+            "secondary-container": "#fd56a7",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#ffd9e4",
+            "on-error": "#ffffff",
+            "tertiary-container": "#a36700",
+            error: "#ba1a1a",
+            outline: "#7b7486",
+            tertiary: "#825100",
+            "on-surface": "#141b2b",
+            "on-secondary-fixed": "#3e0022",
+            "surface-container-low": "#f1f3ff",
+            "on-primary-container": "#fffbff",
+            "on-secondary-container": "#600037",
+            "on-tertiary-fixed": "#2a1700",
+            "surface-container": "#e9edff",
+            "surface-container-high": "#e1e8fd",
+            "secondary-fixed-dim": "#ffb0cd",
+            "on-secondary-fixed-variant": "#8c0053",
+            "tertiary-fixed": "#ffddb8",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f9f9ff",
+            "primary-container": "#8455ef",
+            "primary-fixed-dim": "#d0bcff",
+            "inverse-primary": "#d0bcff",
+            "surface-dim": "#d3daef",
+            "on-error-container": "#93000a",
+            "on-primary": "#ffffff",
+            "tertiary-fixed-dim": "#ffb95f",
+            "on-surface-variant": "#494454",
+            "primary-fixed": "#e9ddff",
+            "on-tertiary-container": "#fffbff",
+            surface: "#f9f9ff",
+            secondary: "#b4136d",
+            "error-container": "#ffdad6",
+            "surface-tint": "#6d3bd7",
+            "on-primary-fixed": "#23005c",
+            "surface-container-highest": "#dce2f7",
+            primary: "#6b38d4"
+          },
+
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+
+          spacing: {
+            unit: "8px",
+            "margin-mobile": "16px",
+            "container-max": "1280px",
+            gutter: "24px",
+            "margin-desktop": "40px"
+          },
+
+          fontFamily: {
+            "headline-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "display-lg": ["Inter"],
+            "display-lg-mobile": ["Inter"]
+          },
+
+          fontSize: {
+            "headline-md": ["24px", {
+              lineHeight: "32px",
+              fontWeight: "600"
+            }],
+
+            "label-sm": ["12px", {
+              lineHeight: "16px",
+              fontWeight: "600"
+            }],
+
+            "label-md": ["14px", {
+              lineHeight: "20px",
+              letterSpacing: "0.01em",
+              fontWeight: "500"
+            }],
+
+            "headline-lg": ["32px", {
+              lineHeight: "40px",
+              letterSpacing: "-0.01em",
+              fontWeight: "600"
+            }],
+
+            "body-lg": ["18px", {
+              lineHeight: "28px",
+              fontWeight: "400"
+            }],
+
+            "body-md": ["16px", {
+              lineHeight: "24px",
+              fontWeight: "400"
+            }],
+
+            "display-lg": ["48px", {
+              lineHeight: "56px",
+              letterSpacing: "-0.02em",
+              fontWeight: "700"
+            }],
+
+            "display-lg-mobile": ["36px", {
+              lineHeight: "44px",
+              letterSpacing: "-0.02em",
+              fontWeight: "700"
+            }]
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+
+  <!-- Navbar JS -->
+  <script src="nav.js" defer></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-background text-on-background selection:bg-primary/20">
+
+  <div id="navbar"></div>
+  <main class="max-w-[1280px] mx-auto px-10 py-12">
+    <div class="flex flex-col gap-4 mb-10">
+      <h1 class="text-3xl font-bold text-gray-900">Your Shopping Bag</h1>
+      <p class="text-gray-600 text-base">Review your items before proceeding to checkout.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <section id="cart-items-container" class="lg:col-span-8 flex flex-col gap-6">
+
+        <div
+          class="cart-item bg-white rounded-xl p-6 flex flex-col md:flex-row gap-8 shadow-sm hover:shadow-md transition-all duration-300 group"
+          data-price="1299.00">
+          <div class="w-full md:w-40 aspect-[4/5] overflow-hidden rounded-lg bg-gray-100 shrink-0">
+            <a href="productInfo.html"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvxghB0FBuZqmKQV0UL640ajyFDuZLGX1CL8cJHIIH7ncPznNX5tHlkIvDA8nRbC9cYSAYsttMalVul4yglYG3wLiUmKEAQ6gWCZnqQQYQKVWMQv-F-JiKFb5-GqcDjLLkNFn2D5pmdX4_95dZGEWhKdV5q1uetM2y5OqnAkEGEk6IDOzJ32E1nlIbrvkwvF2EZFfI7YY4IksyJXO286E5_39BFGENJd1ETsl_bSVdGMhOOS_DBC-PSlTQL9n1RzoS_7Sy4wyrqQ"
+              alt="Aura Vision Pad 12">
+          </div>
+          <div class="flex flex-col flex-1">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <h3 class="text-lg font-bold text-gray-900">Aura Vision Pad 12</h3>
+                <p class="text-sm text-gray-500 mt-1">Ref: AV-2024-SP</p>
+              </div>
+              <button class="delete-btn text-gray-400 hover:text-red-600 transition-colors p-2">
+                <span class="material-symbols-outlined">delete</span>
+              </button>
+            </div>
+            <div class="flex flex-wrap gap-4 mt-2 mb-6">
+              <div class="flex flex-col">
+                <span class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Color</span>
+                <div class="flex items-center gap-2 mt-1">
+                  <span class="w-3 h-3 rounded-full bg-slate-600"></span>
+                  <span class="text-sm">Midnight Slate</span>
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Storage</span>
+                <span class="text-sm mt-1">512 GB</span>
+              </div>
+            </div>
+            <div class="mt-auto flex justify-between items-end">
+              <div class="flex items-center bg-gray-50 rounded-full px-1 py-1 border border-gray-200">
+                <button
+                  class="minus-btn w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-200 transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">remove</span>
+                </button>
+                <span class="quantity w-10 text-center font-bold text-sm">1</span>
+                <button
+                  class="plus-btn w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-200 transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">add</span>
+                </button>
+              </div>
+              <span class="item-total-price text-2xl font-semibold text-purple-600">$1,299.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="cart-item bg-white rounded-xl p-6 flex flex-col md:flex-row gap-8 shadow-sm hover:shadow-md transition-all duration-300 group"
+          data-price="349.00">
+          <div class="w-full md:w-40 aspect-[4/5] overflow-hidden rounded-lg bg-gray-100 shrink-0">
+            <a href="productInfo.html"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtMqgDXrTq6o7dQiin3OvQD4OHJP7sATD5lEEcYJe4fLv_3nO9WiYRNBAXpzRfbx5jral1pHI_MWAjBZ5GOMEvEIeZ1vQEEKWe38dAnprST3gPi_xox6_Zhy-Rqv73l_bJxQc4HlzQ0F9QhTk0vex-TDEhgZqgg6zXNQyjvt3dkHWSDMaePLRc8x8xoTKs_FUvBnJajGrFuImVfydOyxirnrgCsi1SjtalL93J5FCQfGBvZvdUGLp9ATvaMwzU9DdLlI1wshgm2g"
+              alt="Aura Sound Shell Pro"></a>
+          </div>
+          <div class="flex flex-col flex-1">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <h3 class="text-lg font-bold text-gray-900">Aura Sound Shell Pro</h3>
+                <p class="text-sm text-gray-500 mt-1">Ref: AS-SHELL-W</p>
+              </div>
+              <button class="delete-btn text-gray-400 hover:text-red-600 transition-colors p-2">
+                <span class="material-symbols-outlined">delete</span>
+              </button>
+            </div>
+            <div class="flex flex-wrap gap-4 mt-2 mb-6">
+              <div class="flex flex-col">
+                <span class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Color</span>
+                <div class="flex items-center gap-2 mt-1">
+                  <span class="w-3 h-3 rounded-full bg-pink-300 shadow-inner"></span>
+                  <span class="text-sm">Soft Orchid</span>
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">Size</span>
+                <span class="text-sm mt-1">Universal</span>
+              </div>
+            </div>
+            <div class="mt-auto flex justify-between items-end">
+              <div class="flex items-center bg-gray-50 rounded-full px-1 py-1 border border-gray-200">
+                <button
+                  class="minus-btn w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-200 transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">remove</span>
+                </button>
+                <span class="quantity w-10 text-center font-bold text-sm">1</span>
+                <button
+                  class="plus-btn w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-200 transition-colors">
+                  <span class="material-symbols-outlined text-[18px]">add</span>
+                </button>
+              </div>
+              <span class="item-total-price text-2xl font-semibold text-purple-600">$349.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 py-6 border-t border-gray-200 mt-4">
+          <span class="material-symbols-outlined text-purple-600">local_shipping</span>
+          <p class="text-sm text-gray-600">Your order qualifies for <span class="text-purple-600 font-bold">Free Premium
+              Delivery</span></p>
+        </div>
+      </section>
+
+      <aside class="lg:col-span-4 flex flex-col gap-6 sticky top-28">
+        <div class="bg-gray-50 rounded-xl p-8 flex flex-col gap-8 shadow-sm border border-gray-100">
+          <h2 class="text-2xl font-semibold text-gray-900">Order Summary</h2>
+          <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-2">
+              <label class="text-[12px] font-bold text-gray-600 uppercase tracking-wider" for="promo">Promo Code</label>
+              <div class="flex gap-2">
+                <input
+                  class="flex-1 bg-white border border-gray-200 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-600 focus:border-purple-600 transition-all outline-none text-base"
+                  id="promo" placeholder="Enter code" type="text">
+                <button
+                  class="bg-gray-900 text-white px-4 rounded-lg hover:opacity-90 transition-all font-bold text-sm">Apply</button>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-4 border-t border-gray-200 pt-6">
+            <div class="flex justify-between text-base text-gray-600">
+              <span>Subtotal</span>
+              <span id="summary-subtotal">$1,648.00</span>
+            </div>
+            <div class="flex justify-between text-base text-gray-600">
+              <span>Estimated Shipping</span>
+              <span class="text-pink-600 font-semibold">Free</span>
+            </div>
+            <div class="flex justify-between text-base text-gray-600">
+              <span>Estimated Tax</span>
+              <span id="summary-tax">$131.84</span>
+            </div>
+            <div class="flex justify-between pt-4 border-t border-gray-200">
+              <span class="font-bold text-lg text-gray-900">Total</span>
+              <span id="summary-total" class="font-bold text-2xl text-gray-900">$1,779.84</span>
+            </div>
+          </div>
+          <button
+            class="w-full bg-purple-600 text-white py-5 rounded-full font-bold text-lg hover:shadow-lg hover:shadow-purple-200 transition-all active:scale-95 group flex items-center justify-center gap-3">
+            Proceed to Checkout
+            <span
+              class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </button>
+          <div class="flex items-center justify-center gap-4 grayscale opacity-40">
+            <span class="material-symbols-outlined">payments</span>
+            <span class="material-symbols-outlined">credit_card</span>
+            <span class="material-symbols-outlined">account_balance_wallet</span>
+          </div>
+        </div>
+        <div class="p-6 border border-gray-200 rounded-xl flex items-start gap-4 bg-white">
+          <span class="material-symbols-outlined text-purple-600"
+            style="font-variation-settings: 'FILL' 1;">verified_user</span>
+          <div>
+            <h4 class="text-sm font-bold text-gray-900">Secure Purchase Guarantee</h4>
+            <p class="text-[12px] text-gray-500 mt-1 leading-relaxed">Your data is encrypted and protected by AURA's
+              security protocols.</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <div id="footer"></div>
+
+  <script src="footer.js"></script>
+  <script src="cart.js"></script>
+</body>
+
+</html>

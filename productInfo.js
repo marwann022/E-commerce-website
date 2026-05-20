@@ -1,18 +1,20 @@
 // --- Basic UI Logic ---
-document.addEventListener('DOMContentLoaded', function() {
-  
+document.addEventListener('DOMContentLoaded', function () {
+
   // Initialize Lucide Icons
-  lucide.createIcons();
-  
+  window.addEventListener("DOMContentLoaded", () => {
+    lucide.createIcons();
+  });
+
   // 1. Thumbnail Gallery
   var mainImage = document.getElementById('main-image');
   var thumbnails = document.querySelectorAll('.thumbnail-btn');
 
   for (var i = 0; i < thumbnails.length; i++) {
-    thumbnails[i].addEventListener('click', function() {
+    thumbnails[i].addEventListener('click', function () {
       var img = this.querySelector('img');
       if (!img) return; // Ignore if no image (like video button)
-      
+
       mainImage.src = img.src;
 
       // Update active border
@@ -31,14 +33,14 @@ document.addEventListener('DOMContentLoaded', function() {
   var qtyValue = document.getElementById('qty-value');
   var quantity = 1;
 
-  qtyMinus.addEventListener('click', function() {
+  qtyMinus.addEventListener('click', function () {
     if (quantity > 1) {
       quantity--;
       qtyValue.textContent = quantity;
     }
   });
 
-  qtyPlus.addEventListener('click', function() {
+  qtyPlus.addEventListener('click', function () {
     if (quantity < 10) {
       quantity++;
       qtyValue.textContent = quantity;
@@ -49,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var colorBtns = document.querySelectorAll('.color-btn-wrapper');
 
   for (var k = 0; k < colorBtns.length; k++) {
-    colorBtns[k].addEventListener('click', function() {
+    colorBtns[k].addEventListener('click', function () {
       // If already active, do nothing
       if (this.classList.contains('active')) return;
 
@@ -73,13 +75,13 @@ document.addEventListener('DOMContentLoaded', function() {
       if (newImageSrc && mainImage) {
         // Start fade out
         mainImage.classList.add('opacity-0');
-        
-        setTimeout(function() {
+
+        setTimeout(function () {
           // Swap image source while hidden
           mainImage.src = newImageSrc;
-          
+
           // Fade back in
-          setTimeout(function() {
+          setTimeout(function () {
             mainImage.classList.remove('opacity-0');
           }, 50);
         }, 200); // 200ms fade transition point
@@ -92,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var priceDisplay = document.getElementById('product-price');
 
   for (var m = 0; m < modelBtns.length; m++) {
-    modelBtns[m].addEventListener('click', function() {
+    modelBtns[m].addEventListener('click', function () {
       var newPrice = this.getAttribute('data-price');
       priceDisplay.textContent = '$' + parseFloat(newPrice).toFixed(2);
 
@@ -100,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modelBtns[n].classList.remove('border-primary', 'bg-primary/5', 'text-primary');
         modelBtns[n].classList.add('border-outline-variant', 'text-on-surface-variant');
       }
-      
+
       this.classList.remove('border-outline-variant', 'text-on-surface-variant');
       this.classList.add('border-primary', 'bg-primary/5', 'text-primary');
     });
@@ -111,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var tabContents = document.querySelectorAll('.tab-content');
 
   for (var p = 0; p < tabBtns.length; p++) {
-    tabBtns[p].addEventListener('click', function() {
+    tabBtns[p].addEventListener('click', function () {
       var targetId = 'tab-' + this.getAttribute('data-tab');
 
       // Update buttons
@@ -140,11 +142,11 @@ document.addEventListener('DOMContentLoaded', function() {
   var cartBadge = document.getElementById('cart-badge');
   var cartCount = 2;
 
-  addToCartBtn.addEventListener('click', function() {
+  addToCartBtn.addEventListener('click', function () {
     if (this.disabled) return;
-    
+
     this.disabled = true;
-    
+
     cartCount += quantity;
     cartBadge.textContent = cartCount;
 
@@ -158,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
     this.classList.add('bg-on-background', 'text-background');
 
     var btnRef = this;
-    setTimeout(function() {
+    setTimeout(function () {
       addToCartText.textContent = "Add to Cart";
       if (addToCartIcon) {
         addToCartIcon.outerHTML = '<i id="add-to-cart-icon" data-lucide="shopping-bag" class="w-5 h-5"></i>';
@@ -197,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Stars - Dynamic Interaction & Hover Preview
   var ratingStarsContainer = document.getElementById('rating-stars');
-  
+
   function updateStars(rating) {
     if (!ratingStarsContainer) return;
     var stars = ratingStarsContainer.querySelectorAll('[data-value]');
@@ -220,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateStars(currentRating);
 
     // Click handling (delegated)
-    ratingStarsContainer.addEventListener('click', function(e) {
+    ratingStarsContainer.addEventListener('click', function (e) {
       var star = e.target.closest('[data-value]');
       if (!star) return;
       currentRating = parseInt(star.getAttribute('data-value'), 10);
@@ -229,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Hover preview (mousemove)
-    ratingStarsContainer.addEventListener('mousemove', function(e) {
+    ratingStarsContainer.addEventListener('mousemove', function (e) {
       var star = e.target.closest('[data-value]');
       if (!star) return;
       var hoverRating = parseInt(star.getAttribute('data-value'), 10);
@@ -237,28 +239,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Restore on mouse leave
-    ratingStarsContainer.addEventListener('mouseleave', function() {
+    ratingStarsContainer.addEventListener('mouseleave', function () {
       updateStars(currentRating);
     });
   }
 
   if (reviewForm) {
-    reviewForm.addEventListener('submit', function(e) {
+    reviewForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      
+
       var originalText = submitReviewBtn.textContent;
       submitReviewBtn.textContent = "Review Submitted!";
       submitReviewBtn.classList.remove('bg-primary', 'text-on-primary');
       submitReviewBtn.classList.add('bg-on-background', 'text-background');
       submitReviewBtn.disabled = true;
 
-      setTimeout(function() {
+      setTimeout(function () {
         closeModal();
         reviewForm.reset();
         currentRating = 5;
         updateStars(5);
         ratingInput.value = 5;
-        
+
         submitReviewBtn.textContent = originalText;
         submitReviewBtn.classList.remove('bg-on-background', 'text-background');
         submitReviewBtn.classList.add('bg-primary', 'text-on-primary');
@@ -269,20 +271,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 8. FAQ Accordion
   var faqTriggers = document.querySelectorAll('.faq-trigger');
-  
+
   for (var i = 0; i < faqTriggers.length; i++) {
-    faqTriggers[i].addEventListener('click', function() {
+    faqTriggers[i].addEventListener('click', function () {
       var item = this.parentElement;
       var answer = item.querySelector('.faq-answer');
       var isOpen = item.classList.contains('open');
-      
+
       // Close all other FAQ items for a neat accordion behavior
       var allItems = document.querySelectorAll('.faq-item');
       for (var j = 0; j < allItems.length; j++) {
         allItems[j].classList.remove('open');
         allItems[j].querySelector('.faq-answer').style.maxHeight = null;
       }
-      
+
       if (!isOpen) {
         item.classList.add('open');
         answer.style.maxHeight = answer.scrollHeight + 'px';

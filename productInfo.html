@@ -5,6 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Info</title>
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
       tailwind.config = {
@@ -293,90 +296,14 @@
         transform: rotate(180deg);
       }
     </style>
+    <script src="nav.js" defer></script>
   </head>
   <body class="bg-background text-on-background font-body-md">
     <!-- SVG Linear Gradient definition for half-filled Lucide rating stars -->
-    <svg width="0" height="0" class="absolute">
-      <defs>
-        <linearGradient id="half-star-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="50%" stop-color="#825100" />
-          <stop offset="50%" stop-color="transparent" stop-opacity="1" />
-        </linearGradient>
-      </defs>
-    </svg>
+    
 
     <!-- TopAppBar -->
-    <header
-      class="bg-surface/80 dark:bg-background/80 backdrop-blur-md docked full-width top-0 sticky z-50 shadow-sm dark:shadow-none"
-    >
-      <div
-        class="flex flex-col w-full max-w-container-max mx-auto px-margin-desktop py-4"
-      >
-        <div class="flex items-center justify-between">
-          <div
-            class="text-headline-lg font-headline-lg tracking-tighter text-on-background dark:text-inverse-on-surface"
-          >
-            AURA
-          </div>
-          <nav class="hidden md:flex items-center space-x-8">
-            <a
-              class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors text-label-md font-label-md"
-              href="#"
-              >Shop</a
-            >
-            <a
-              class="text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 text-label-md font-label-md"
-              href="#"
-              >New Arrivals</a
-            >
-            <a
-              class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors text-label-md font-label-md"
-              href="#"
-              >Sale</a
-            >
-            <a
-              class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors text-label-md font-label-md"
-              href="#"
-              >About</a
-            >
-          </nav>
-          <div class="flex items-center space-x-6">
-            <button
-              class="hover:opacity-80 transition-opacity duration-300 scale-100 active:scale-95 transition-transform duration-200"
-              aria-label="Profile"
-            >
-              <i
-                data-lucide="user"
-                class="w-6 h-6 text-primary dark:text-primary-fixed-dim"
-              ></i>
-            </button>
-            <button
-              class="hover:opacity-80 transition-opacity duration-300 scale-100 active:scale-95 transition-transform duration-200"
-              aria-label="Favorites"
-            >
-              <i
-                data-lucide="heart"
-                class="w-6 h-6 text-primary dark:text-primary-fixed-dim"
-              ></i>
-            </button>
-            <button
-              class="hover:opacity-80 transition-opacity duration-300 scale-100 active:scale-95 transition-transform duration-200 relative"
-              aria-label="Cart"
-            >
-              <i
-                data-lucide="shopping-bag"
-                class="w-6 h-6 text-primary dark:text-primary-fixed-dim"
-              ></i>
-              <span
-                id="cart-badge"
-                class="absolute -top-1 -right-1 bg-secondary text-on-secondary text-[10px] rounded-full w-4 h-4 flex items-center justify-center transition-transform duration-300"
-                >2</span
-              >
-            </button>
-          </div>
-        </div>
-      </div>
-    </header>
+     <div id="navbar"></div>
     <main
       class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8"
     >
@@ -384,9 +311,9 @@
       <nav
         class="flex items-center space-x-2 mb-4 text-label-md font-label-md text-on-surface-variant"
       >
-        <span>Shop</span>
+        <a href="home.html" class="hover:underline"><span>Home</span></a>
         <i data-lucide="chevron-right" class="w-4 h-4"></i>
-        <span>Audio</span>
+        <a href="arrival.html" class="hover:underline"><span>Arrivals</span></a>
         <i data-lucide="chevron-right" class="w-4 h-4"></i>
         <span class="text-on-surface">Aura Elite Wireless</span>
       </nav>
@@ -929,127 +856,7 @@
       </section>
     </main>
     <!-- Footer -->
-    <footer class="bg-surface-container-low dark:bg-inverse-surface mt-20">
-      <div
-        class="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max mx-auto px-margin-desktop py-16"
-      >
-        <div class="col-span-1 md:col-span-1">
-          <div
-            class="text-headline-md font-headline-md font-bold text-on-surface dark:text-inverse-on-surface mb-6"
-          >
-            AURA
-          </div>
-          <p
-            class="text-body-md font-body-md text-on-surface-variant dark:text-surface-variant mb-8 max-w-xs"
-          >
-            Premium minimalist technology designed for the modern lifestyle.
-            Precision, elegance, and performance in every detail.
-          </p>
-        </div>
-        <div class="flex flex-col space-y-4">
-          <h4
-            class="text-label-md font-label-md font-bold text-on-surface dark:text-inverse-on-surface uppercase tracking-widest"
-          >
-            Shop
-          </h4>
-          <a
-            class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:underline transition-all text-body-md"
-            href="#"
-            >Headphones</a
-          >
-          <a
-            class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:underline transition-all text-body-md"
-            href="#"
-            >Speakers</a
-          >
-          <a
-            class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:underline transition-all text-body-md"
-            href="#"
-            >Accessories</a
-          >
-          <a
-            class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:underline transition-all text-body-md"
-            href="#"
-            >Collaborations</a
-          >
-        </div>
-        <div class="flex flex-col space-y-4">
-          <h4
-            class="text-label-md font-label-md font-bold text-on-surface dark:text-inverse-on-surface uppercase tracking-widest"
-          >
-            Support
-          </h4>
-          <a
-            class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:underline transition-all text-body-md"
-            href="#"
-            >Customer Service</a
-          >
-          <a
-            class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:underline transition-all text-body-md"
-            href="#"
-            >Shipping</a
-          >
-          <a
-            class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:underline transition-all text-body-md"
-            href="#"
-            >Returns</a
-          >
-          <a
-            class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:underline transition-all text-body-md"
-            href="#"
-            >Warranty</a
-          >
-        </div>
-        <div class="flex flex-col space-y-4">
-          <h4
-            class="text-label-md font-label-md font-bold text-on-surface dark:text-inverse-on-surface uppercase tracking-widest"
-          >
-            Connect
-          </h4>
-          <div class="flex space-x-4 mb-4">
-            <i data-lucide="globe" class="cursor-pointer hover:text-primary transition-colors w-5 h-5"></i>
-            <i data-lucide="mail" class="cursor-pointer hover:text-primary transition-colors w-5 h-5"></i>
-            <i data-lucide="share-2" class="cursor-pointer hover:text-primary transition-colors w-5 h-5"></i>
-          </div>
-          <p
-            class="text-label-sm font-label-sm text-on-surface-variant dark:text-surface-variant"
-          >
-            Subscribe to our newsletter for exclusive launches.
-          </p>
-          <div class="flex">
-            <input
-              class="bg-surface-container border-none rounded-l-lg py-2 px-4 focus:ring-1 focus:ring-primary w-full text-label-md"
-              placeholder="Email address"
-              type="email"
-            />
-            <button
-              class="bg-primary text-on-primary px-4 rounded-r-lg hover:opacity-90 flex items-center justify-center transition-opacity"
-            >
-              <i data-lucide="arrow-right" class="w-5 h-5"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4"
-      >
-        <p
-          class="text-label-sm font-label-sm text-on-surface-variant dark:text-surface-variant"
-        >
-          © 2024 AURA Minimalist Tech. All rights reserved.
-        </p>
-        <div
-          class="flex gap-6 text-label-sm font-label-sm text-on-surface-variant dark:text-surface-variant"
-        >
-          <a class="hover:text-primary transition-colors" href="#"
-            >Privacy Policy</a
-          >
-          <a class="hover:text-primary transition-colors" href="#"
-            >Terms of Use</a
-          >
-        </div>
-      </div>
-    </footer>
+    <div id="footer"></div>
 
     <!-- Review Modal -->
     <div
@@ -1140,7 +947,7 @@
         </form>
       </div>
     </div>
-
-    <script type="module" src="./productInfo.js"></script>
+    <script src="footer.js"></script>
+    <script type="module" src="productInfo.js"></script>
   </body>
 </html>
