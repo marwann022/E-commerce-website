@@ -1,6 +1,9 @@
 // --- Basic UI Logic ---
 document.addEventListener('DOMContentLoaded', function() {
   
+  // Initialize Lucide Icons
+  lucide.createIcons();
+  
   // 1. Thumbnail Gallery
   var mainImage = document.getElementById('main-image');
   var thumbnails = document.querySelectorAll('.thumbnail-btn');
@@ -43,16 +46,44 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // 3. Color Selection
-  var colorBtns = document.querySelectorAll('.color-btn');
+  var colorBtns = document.querySelectorAll('.color-btn-wrapper');
 
   for (var k = 0; k < colorBtns.length; k++) {
     colorBtns[k].addEventListener('click', function() {
+      // If already active, do nothing
+      if (this.classList.contains('active')) return;
+
+      // Remove active class from all swatches
       for (var l = 0; l < colorBtns.length; l++) {
-        colorBtns[l].classList.remove('border-primary', 'ring-2', 'ring-offset-2');
-        colorBtns[l].classList.add('border-transparent');
+        colorBtns[l].classList.remove('active');
       }
-      this.classList.remove('border-transparent');
-      this.classList.add('border-primary', 'ring-2', 'ring-offset-2');
+
+      // Add active class to clicked swatch
+      this.classList.add('active');
+
+      // Trigger ripple wave animation reset
+      var ripple = this.querySelector('.color-ripple-effect');
+      if (ripple) {
+        var newRipple = ripple.cloneNode(true);
+        ripple.parentNode.replaceChild(newRipple, ripple);
+      }
+
+      // Dynamic Image Swap with smooth premium fade transition
+      var newImageSrc = this.getAttribute('data-image');
+      if (newImageSrc && mainImage) {
+        // Start fade out
+        mainImage.classList.add('opacity-0');
+        
+        setTimeout(function() {
+          // Swap image source while hidden
+          mainImage.src = newImageSrc;
+          
+          // Fade back in
+          setTimeout(function() {
+            mainImage.classList.remove('opacity-0');
+          }, 50);
+        }, 200); // 200ms fade transition point
+      }
     });
   }
 
@@ -105,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // 6. Add to Cart
   var addToCartBtn = document.getElementById('add-to-cart-btn');
   var addToCartText = document.getElementById('add-to-cart-text');
+  var addToCartIcon = document.getElementById('add-to-cart-icon');
   var cartBadge = document.getElementById('cart-badge');
   var cartCount = 2;
 
@@ -117,12 +149,22 @@ document.addEventListener('DOMContentLoaded', function() {
     cartBadge.textContent = cartCount;
 
     addToCartText.textContent = "Successfully Added";
+    if (addToCartIcon) {
+      addToCartIcon.outerHTML = '<i id="add-to-cart-icon" data-lucide="check" class="w-5 h-5"></i>';
+      lucide.createIcons();
+      addToCartIcon = document.getElementById('add-to-cart-icon');
+    }
     this.classList.remove('bg-primary', 'text-on-primary');
     this.classList.add('bg-on-background', 'text-background');
 
     var btnRef = this;
     setTimeout(function() {
       addToCartText.textContent = "Add to Cart";
+      if (addToCartIcon) {
+        addToCartIcon.outerHTML = '<i id="add-to-cart-icon" data-lucide="shopping-bag" class="w-5 h-5"></i>';
+        lucide.createIcons();
+        addToCartIcon = document.getElementById('add-to-cart-icon');
+      }
       btnRef.classList.remove('bg-on-background', 'text-background');
       btnRef.classList.add('bg-primary', 'text-on-primary');
       btnRef.disabled = false;
@@ -135,7 +177,6 @@ document.addEventListener('DOMContentLoaded', function() {
   var closeReviewBtn = document.getElementById('close-review-modal');
   var reviewBackdrop = document.getElementById('review-modal-backdrop');
   var reviewForm = document.getElementById('review-form');
-  var stars = document.querySelectorAll('#rating-stars span');
   var ratingInput = document.getElementById('rating-value');
   var submitReviewBtn = document.getElementById('submit-review-btn');
   var currentRating = 5;
@@ -154,23 +195,49 @@ document.addEventListener('DOMContentLoaded', function() {
   if (closeReviewBtn) closeReviewBtn.addEventListener('click', closeModal);
   if (reviewBackdrop) reviewBackdrop.addEventListener('click', closeModal);
 
-  // Stars
+  // Stars - Dynamic Interaction & Hover Preview
+  var ratingStarsContainer = document.getElementById('rating-stars');
+  
   function updateStars(rating) {
+    if (!ratingStarsContainer) return;
+    var stars = ratingStarsContainer.querySelectorAll('[data-value]');
     for (var s = 0; s < stars.length; s++) {
-      if (s < rating) {
-        stars[s].style.fontVariationSettings = "'FILL' 1";
-        stars[s].classList.add('text-tertiary');
+      var val = parseInt(stars[s].getAttribute('data-value'), 10);
+      if (val <= rating) {
+        stars[s].setAttribute('fill', '#825100');
+        stars[s].classList.add('text-tertiary', 'fill-tertiary');
+        stars[s].classList.remove('text-outline-variant', 'fill-none');
       } else {
-        stars[s].style.fontVariationSettings = "'FILL' 0";
-        stars[s].classList.remove('text-tertiary');
+        stars[s].setAttribute('fill', '#ffffff');
+        stars[s].classList.remove('text-tertiary', 'fill-tertiary');
+        stars[s].classList.add('text-outline-variant', 'fill-none');
       }
     }
   }
 
-  for (var t = 0; t < stars.length; t++) {
-    stars[t].addEventListener('click', function() {
-      currentRating = parseInt(this.getAttribute('data-value'), 10);
+  if (ratingStarsContainer) {
+    // Initialize stars to currentRating (5 stars)
+    updateStars(currentRating);
+
+    // Click handling (delegated)
+    ratingStarsContainer.addEventListener('click', function(e) {
+      var star = e.target.closest('[data-value]');
+      if (!star) return;
+      currentRating = parseInt(star.getAttribute('data-value'), 10);
       ratingInput.value = currentRating;
+      updateStars(currentRating);
+    });
+
+    // Hover preview (mousemove)
+    ratingStarsContainer.addEventListener('mousemove', function(e) {
+      var star = e.target.closest('[data-value]');
+      if (!star) return;
+      var hoverRating = parseInt(star.getAttribute('data-value'), 10);
+      updateStars(hoverRating);
+    });
+
+    // Restore on mouse leave
+    ratingStarsContainer.addEventListener('mouseleave', function() {
       updateStars(currentRating);
     });
   }
@@ -197,6 +264,29 @@ document.addEventListener('DOMContentLoaded', function() {
         submitReviewBtn.classList.add('bg-primary', 'text-on-primary');
         submitReviewBtn.disabled = false;
       }, 1500);
+    });
+  }
+
+  // 8. FAQ Accordion
+  var faqTriggers = document.querySelectorAll('.faq-trigger');
+  
+  for (var i = 0; i < faqTriggers.length; i++) {
+    faqTriggers[i].addEventListener('click', function() {
+      var item = this.parentElement;
+      var answer = item.querySelector('.faq-answer');
+      var isOpen = item.classList.contains('open');
+      
+      // Close all other FAQ items for a neat accordion behavior
+      var allItems = document.querySelectorAll('.faq-item');
+      for (var j = 0; j < allItems.length; j++) {
+        allItems[j].classList.remove('open');
+        allItems[j].querySelector('.faq-answer').style.maxHeight = null;
+      }
+      
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
     });
   }
 });
