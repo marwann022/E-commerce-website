@@ -1,10 +1,8 @@
 // --- Basic UI Logic ---
-document.addEventListener('DOMContentLoaded', function () {
-
-  // Initialize Lucide Icons
-  window.addEventListener("DOMContentLoaded", () => {
-    lucide.createIcons();
-  });
+// Initialize Lucide Icons immediately
+if (typeof lucide !== 'undefined') {
+  lucide.createIcons();
+}
 
   // 1. Thumbnail Gallery
   var mainImage = document.getElementById('main-image');
@@ -291,4 +289,3 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
-});

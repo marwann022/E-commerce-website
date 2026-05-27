@@ -1,42 +1,42 @@
-(function () {
-  'use strict';
+document.addEventListener("DOMContentLoaded", () => {
+  const form      = document.getElementById('contact-form');
+  const statusEl  = document.getElementById('form-status');
+  const charCount = document.getElementById('char-count');
+  const MAX_MSG   = 1000;
 
-  var form      = document.getElementById('contact-form');
-  var statusEl  = document.getElementById('form-status');
-  var charCount = document.getElementById('char-count');
-  var MAX_MSG   = 1000;
-
-  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  var NAME_RE  = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]{2,}$/;
-  var PHONE_RE = /^[+\d\s\-()\u0660-\u0669]{7,20}$/; // supports Arabic-Indic digits too
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const NAME_RE  = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]{2,}$/;
+  const PHONE_RE = /^[+\d\s\-()\u0660-\u0669]{7,20}$/; // supports Arabic-Indic digits too
 
   if (!form) return;
 
   // ── Helpers ──────────────────────────────────────────────
 
-  function field(name) {
-    return form.querySelector('[name="' + name + '"]');
-  }
+  const field = (name) => form.querySelector(`[name="${name}"]`);
 
-  function errSpan(input) {
-    return input.closest('.flex.flex-col').querySelector('.field-error');
-  }
+  const errSpan = (input) => input.closest('.flex.flex-col').querySelector('.field-error');
 
-  function setError(input, msg) {
+  const setError = (input, msg) => {
     input.classList.add('input-error');
     input.setAttribute('aria-invalid', 'true');
-    var sp = errSpan(input);
-    if (sp) { sp.textContent = msg; sp.classList.remove('hidden'); }
-  }
+    const sp = errSpan(input);
+    if (sp) {
+      sp.textContent = msg;
+      sp.classList.remove('hidden');
+    }
+  };
 
-  function clearError(input) {
+  const clearError = (input) => {
     input.classList.remove('input-error');
     input.removeAttribute('aria-invalid');
-    var sp = errSpan(input);
-    if (sp) { sp.textContent = ''; sp.classList.add('hidden'); }
-  }
+    const sp = errSpan(input);
+    if (sp) {
+      sp.textContent = '';
+      sp.classList.add('hidden');
+    }
+  };
 
-  function showStatus(msg, type) {
+  const showStatus = (msg, type) => {
     statusEl.textContent = msg;
     statusEl.className = 'text-sm font-medium rounded-xl px-4 py-3 ' +
       (type === 'success'
@@ -44,28 +44,28 @@
         : 'bg-red-50 text-red-700');
     statusEl.classList.remove('hidden');
     statusEl.setAttribute('role', 'alert');
-  }
+  };
 
-  function hideStatus() {
+  const hideStatus = () => {
     statusEl.classList.add('hidden');
     statusEl.removeAttribute('role');
-  }
+  };
 
   // ── Character counter ─────────────────────────────────────
 
-  var msgInput = field('message');
+  const msgInput = field('message');
   if (msgInput && charCount) {
-    msgInput.addEventListener('input', function () {
-      var len = msgInput.value.length;
-      charCount.textContent = len + ' / ' + MAX_MSG;
+    msgInput.addEventListener('input', () => {
+      const len = msgInput.value.length;
+      charCount.textContent = `${len} / ${MAX_MSG}`;
       charCount.style.color = len > MAX_MSG ? '#ba1a1a' : '';
     });
   }
 
   // ── Clear errors on input ─────────────────────────────────
 
-  Array.prototype.forEach.call(form.elements, function (el) {
-    el.addEventListener('input', function () {
+  Array.from(form.elements).forEach((el) => {
+    el.addEventListener('input', () => {
       clearError(el);
       hideStatus();
     });
@@ -73,8 +73,8 @@
 
   // ── Validate ──────────────────────────────────────────────
 
-  function validate(name, email, phone, subject, message) {
-    var errors = [];
+  const validate = (name, email, phone, subject, message) => {
+    const errors = [];
 
     if (!name) {
       errors.push({ fieldName: 'name', msg: 'Name is required.' });
@@ -103,46 +103,57 @@
     }
 
     return errors;
-  }
+  };
 
   // ── Submit ────────────────────────────────────────────────
 
-  form.addEventListener('submit', function (e) {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     hideStatus();
 
-    var name    = (field('name').value    || '').trim();
-    var email   = (field('email').value   || '').trim();
-    var phone   = (field('phone').value   || '').trim();
-    var subject = (field('subject').value || '').trim();
-    var message = (field('message').value || '').trim();
+    const name    = (field('name').value    || '').trim();
+    const email   = (field('email').value   || '').trim();
+    const phone   = (field('phone').value   || '').trim();
+    const subject = (field('subject').value || '').trim();
+    const message = (field('message').value || '').trim();
 
-    var errors = validate(name, email, phone, subject, message);
+    const errors = validate(name, email, phone, subject, message);
 
     if (errors.length) {
-      errors.forEach(function (err) { setError(field(err.fieldName), err.msg); });
+      errors.forEach((err) => setError(field(err.fieldName), err.msg));
       showStatus('Please fix the highlighted fields.', 'error');
-      var firstField = field(errors[0].fieldName);
+      const firstField = field(errors[0].fieldName);
       if (firstField && firstField.focus) firstField.focus();
       return;
     }
 
     // Disable submit while sending
-    var btn  = form.querySelector('button[type="submit"]');
-    var orig = btn.innerHTML;
+    const btn  = form.querySelector('button[type="submit"]');
+    const orig = btn.innerHTML;
     btn.disabled = true;
     btn.setAttribute('aria-busy', 'true');
-    btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">hourglass_top</span> Sending…';
+    btn.innerHTML = '<i data-lucide="loader-2" class="animate-spin w-[18px] h-[18px] inline-block mr-2"></i> Sending…';
+    
+    if (typeof lucide !== "undefined") {
+      lucide.createIcons();
+    }
 
-    // Simulate async submit — replace setTimeout with a real fetch() to your backend
-    setTimeout(function () {
+    // Simulate async submit
+    setTimeout(() => {
       showStatus('Thanks — your message has been sent! We\'ll get back to you within 24 hours.', 'success');
       form.reset();
-      if (charCount) charCount.textContent = '0 / ' + MAX_MSG;
+      if (charCount) charCount.textContent = `0 / ${MAX_MSG}`;
       btn.disabled = false;
       btn.removeAttribute('aria-busy');
       btn.innerHTML = orig;
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+      }
     }, 900);
   });
 
-})();
+  // Initial call to render Lucide icons in case they haven't been rendered yet
+  if (typeof lucide !== "undefined") {
+    lucide.createIcons();
+  }
+});

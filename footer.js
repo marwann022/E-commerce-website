@@ -11,17 +11,9 @@ const footer = `
             </p>
 
             <div class="flex space-x-4">
-                <span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70 transition-opacity">
-                    public
-                </span>
-
-                <span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70 transition-opacity">
-                    mail
-                </span>
-
-                <span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70 transition-opacity">
-                    share
-                </span>
+                <i data-lucide="globe" class="text-primary cursor-pointer hover:opacity-70 transition-opacity w-5 h-5"></i>
+                <i data-lucide="mail" class="text-primary cursor-pointer hover:opacity-70 transition-opacity w-5 h-5"></i>
+                <i data-lucide="share-2" class="text-primary cursor-pointer hover:opacity-70 transition-opacity w-5 h-5"></i>
             </div>
         </div>
 
@@ -93,3 +85,8 @@ const footer = `
 `;
 
 document.getElementById("footer").innerHTML = footer;
+
+// Dynamic render of injected footer icons
+if (typeof lucide !== "undefined") {
+  lucide.createIcons();
+}

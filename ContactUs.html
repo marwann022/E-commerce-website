@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -142,8 +142,8 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-    rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Navbar JS -->
   <script src="nav.js" defer></script>
@@ -252,7 +252,7 @@
       </div>
       <div class="flex justify-end">
         <button type="submit" class="submit-btn">
-          <span class="material-symbols-outlined text-[18px]">send</span>
+          <i data-lucide="send" class="w-[18px] h-[18px]"></i>
           Send Message
         </button>
       </div>
@@ -268,7 +268,7 @@
         <div class="space-y-6">
 
           <div class="info-row">
-            <span class="material-symbols-outlined info-icon">location_on</span>
+            <i data-lucide="map-pin" class="info-icon w-[42px] h-[42px] flex items-center justify-center"></i>
             <div>
               <p class="info-label">Address</p>
               <p class="info-value">12 El-Geish Street, Ismailia<br>Ismailia Governorate, Egypt 41511</p>
@@ -276,7 +276,7 @@
           </div>
 
           <div class="info-row">
-            <span class="material-symbols-outlined info-icon">call</span>
+            <i data-lucide="phone" class="info-icon w-[42px] h-[42px] flex items-center justify-center"></i>
             <div>
               <p class="info-label">Phone</p>
               <a href="tel:+201020304050" class="info-value hover:text-primary transition-colors">+20 10 2030 4050</a>
@@ -284,7 +284,7 @@
           </div>
 
           <div class="info-row">
-            <span class="material-symbols-outlined info-icon">mail</span>
+            <i data-lucide="mail" class="info-icon w-[42px] h-[42px] flex items-center justify-center"></i>
             <div>
               <p class="info-label">Email</p>
               <a href="mailto:support@aura-eg.com" class="info-value hover:text-primary transition-colors">support@aura-eg.com</a>
@@ -292,7 +292,7 @@
           </div>
 
           <div class="info-row">
-            <span class="material-symbols-outlined info-icon">schedule</span>
+            <i data-lucide="clock" class="info-icon w-[42px] h-[42px] flex items-center justify-center"></i>
             <div>
               <p class="info-label">Working Hours</p>
               <p class="info-value">Sun – Thu: 10:00 AM – 8:00 PM<br>Fri – Sat: 12:00 PM – 6:00 PM</p>
@@ -318,12 +318,12 @@
             </svg>
           </div>
           <a href="https://www.openstreetmap.org/?mlat=30.5965&mlon=32.2731#map=15/30.5965/32.2731"
-             target="_blank" rel="noopener" class="map-link-btn" title="Open in OpenStreetMap">
-            <span class="material-symbols-outlined fill-1">open_in_new</span>
+             target="_blank" rel="noopener" class="map-link-btn" title="Open in OpenStreetMap" aria-label="Open in OpenStreetMap">
+            <i data-lucide="external-link" class="w-4 h-4"></i>
           </a>
         </div>
-        <div class="px-6 py-4 text-xs text-on-surface-variant flex items-center gap-1.5">
-          <span class="material-symbols-outlined fill-1 text-primary" style="font-size:1rem">location_on</span>
+        <div class="px-6 py-4 text-xs text-on-surface-variant flex items-center gap-2">
+          <i data-lucide="map-pin" class="text-primary w-4 h-4"></i>
           12 El-Geish Street, Ismailia, Egypt
         </div>
       </div>
@@ -342,7 +342,7 @@
       <details class="faq-item group">
         <summary class="faq-summary">
           <span class="font-semibold">Shipping &amp; Delivery</span>
-          <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-on-surface-variant">expand_more</span>
+          <i data-lucide="chevron-down" class="transition-transform duration-300 group-open:rotate-180 text-on-surface-variant w-5 h-5"></i>
         </summary>
         <p class="faq-body">We offer free express shipping on all orders over EGP 2,000. Orders are processed within 24 hours and delivered within 2–4 business days across Egypt. All products are shipped in our signature sustainable premium packaging.</p>
       </details>
@@ -350,7 +350,7 @@
       <details class="faq-item group">
         <summary class="faq-summary">
           <span class="font-semibold">Returns &amp; Exchanges</span>
-          <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-on-surface-variant">expand_more</span>
+          <i data-lucide="chevron-down" class="transition-transform duration-300 group-open:rotate-180 text-on-surface-variant w-5 h-5"></i>
         </summary>
         <p class="faq-body">Our 30-day no-questions-asked return policy ensures complete satisfaction. Return any AURA product in original condition for a full refund or exchange — in-store in Ismailia or via scheduled pickup.</p>
       </details>
@@ -358,7 +358,7 @@
       <details class="faq-item group">
         <summary class="faq-summary">
           <span class="font-semibold">Warranty &amp; Support</span>
-          <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-on-surface-variant">expand_more</span>
+          <i data-lucide="chevron-down" class="transition-transform duration-300 group-open:rotate-180 text-on-surface-variant w-5 h-5"></i>
         </summary>
         <p class="faq-body">Every AURA product includes a 2-year manufacturer's warranty covering hardware defects and battery health. Upgrade to AURA+ Care within the first 60 days for full accidental damage protection.</p>
       </details>

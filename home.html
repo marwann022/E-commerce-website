@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AURA — Minimalist Tech</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
         tailwind.config = {
@@ -258,9 +257,17 @@
 <body class="bg-background text-on-background antialiased overflow-x-hidden scroll-smooth">
 
     <!-- Announcement Bar -->
-    <div class="w-full bg-inverse-surface text-inverse-on-surface py-2 text-center text-label-md tracking-wider">
+    <div id="announcement-bar" class="relative w-full bg-inverse-surface text-inverse-on-surface py-2.5 text-center text-label-md tracking-wider flex items-center justify-center px-10 z-[100]">
         <p>Free shipping on orders over $150</p>
+        <button id="close-announcement" class="absolute right-4 top-1/2 -translate-y-1/2 text-inverse-on-surface/80 hover:text-inverse-on-surface transition-colors cursor-pointer flex items-center justify-center p-1 rounded-full hover:bg-white/10" aria-label="Close announcement">
+            <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
     </div>
+    <script>
+        document.getElementById('close-announcement')?.addEventListener('click', () => {
+            document.getElementById('announcement-bar')?.remove();
+        });
+    </script>
 
     <!-- Header / TopAppBar -->
     <div id="navbar"></div>
@@ -388,8 +395,7 @@
                     </div>
                     <a href="#" class="text-primary text-label-md flex items-center group font-medium scroll-reveal">
                         View All Collection
-                        <span class="material-symbols-outlined ml-2 transition-transform group-hover:translate-x-1"
-                            aria-hidden="true">trending_flat</span>
+                        <i data-lucide="arrow-right" class="ml-2 transition-transform group-hover:translate-x-1 w-4 h-4" aria-hidden="true"></i>
                     </a>
                 </div>
 
@@ -492,12 +498,12 @@
                     </h2>
                     <div class="flex gap-3">
                         <button aria-label="Previous testimonial"
-                            class="p-5 border border-outline-variant rounded-3xl hover:bg-surface-container transition-all active:scale-95">
-                            <span class="material-symbols-outlined text-2xl" aria-hidden="true">arrow_back</span>
+                            class="p-5 border border-outline-variant rounded-3xl hover:bg-surface-container transition-all active:scale-95 flex items-center justify-center">
+                            <i data-lucide="arrow-left" class="w-6 h-6"></i>
                         </button>
                         <button aria-label="Next testimonial"
-                            class="p-5 border border-outline-variant rounded-3xl hover:bg-surface-container transition-all active:scale-95">
-                            <span class="material-symbols-outlined text-2xl" aria-hidden="true">arrow_forward</span>
+                            class="p-5 border border-outline-variant rounded-3xl hover:bg-surface-container transition-all active:scale-95 flex items-center justify-center">
+                            <i data-lucide="arrow-right" class="w-6 h-6"></i>
                         </button>
                     </div>
                 </div>
@@ -506,62 +512,42 @@
 
                     <!-- Testimonial 1 -->
                     <div class="glass-card p-8 md:p-10 rounded-3xl border border-primary/10 scroll-reveal stagger-1">
-                        <div class="flex text-amber-500 mb-8 gap-0.5" aria-label="5 stars">
-                            <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL' 1"
-                                aria-hidden="true">star</span>
-                            <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL' 1"
-                                aria-hidden="true">star</span>
-                            <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL' 1"
-                                aria-hidden="true">star</span>
-                            <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL' 1"
-                                aria-hidden="true">star</span>
-                            <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL' 1"
-                                aria-hidden="true">star</span>
+                        <div class="flex text-amber-500 mb-8 gap-1" aria-label="5 stars">
+                            <i data-lucide="star" class="w-6 h-6 fill-amber-500 text-amber-500"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-amber-500 text-amber-500"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-amber-500 text-amber-500"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-amber-500 text-amber-500"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-amber-500 text-amber-500"></i>
                         </div>
                         <p class="text-body-lg italic text-on-surface mb-10 leading-relaxed">"The design language of
                             AURA is truly in a league of its own. It's rare to find tech products that actually feel
                             like fashion statements."</p>
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-primary-fixed flex-shrink-0 ring-1 ring-white/60">
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80" alt="Julian Rossi" class="w-12 h-12 rounded-2xl object-cover flex-shrink-0 ring-1 ring-white/60">
                             <div>
-                                <p class="text-label-md font-medium">Julian
-                                    Rossi
-                                </p>
-                                <p class="text-label-sm text-outline">Creative
-                                    Director
-                                </p>
+                                <p class="text-label-md font-medium">Julian Rossi</p>
+                                <p class="text-label-sm text-outline">Creative Director</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Testimonial 2 -->
                     <div class="glass-card p-8 md:p-10 rounded-3xl border border-primary/10 scroll-reveal stagger-2">
-                        <div class="flex text-amber-500 mb-8 gap-0.5" aria-label="5 stars">
-                            <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL' 1"
-                                aria-hidden="true">star</span>
-                            <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL' 1"
-                                aria-hidden="true">star</span>
-                            <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL' 1"
-                                aria-hidden="true">star</span>
-                            <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL' 1"
-                                aria-hidden="true">star</span>
-                            <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL' 1"
-                                aria-hidden="true">star</span>
+                        <div class="flex text-amber-500 mb-8 gap-1" aria-label="5 stars">
+                            <i data-lucide="star" class="w-6 h-6 fill-amber-500 text-amber-500"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-amber-500 text-amber-500"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-amber-500 text-amber-500"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-amber-500 text-amber-500"></i>
+                            <i data-lucide="star" class="w-6 h-6 fill-amber-500 text-amber-500"></i>
                         </div>
                         <p class="text-body-lg italic text-on-surface mb-10 leading-relaxed">"Exceptional quality and
                             seamless performance. The attention to detail in the unboxing experience was just the
                             beginning."</p>
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-secondary-fixed flex-shrink-0 ring-1 ring-white/60">
-                            </div>
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80" alt="Elena Vance" class="w-12 h-12 rounded-2xl object-cover flex-shrink-0 ring-1 ring-white/60">
                             <div>
-                                <p class="text-label-md font-medium">Elena
-                                    Vance
-                                </p>
-                                <p class="text-label-sm text-outline">Product
-                                    Designer
-                                </p>
+                                <p class="text-label-md font-medium">Elena Vance</p>
+                                <p class="text-label-sm text-outline">Product Designer</p>
                             </div>
                         </div>
                     </div>
@@ -649,6 +635,9 @@
 
         // Initialize everything
         window.addEventListener('load', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
             initScrollAnimations();
             respectReducedMotion();
             handleHeaderScroll();

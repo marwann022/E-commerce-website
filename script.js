@@ -24,16 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         icon.classList.toggle("active");
         icon.classList.toggle("text-red-500");
+        icon.classList.toggle("fill-red-500");
         icon.classList.toggle("text-on-background");
         icon.classList.toggle("scale-110");
 
         const isActive = icon.classList.contains("active");
 
         if (isActive) {
-          icon.style.fontVariationSettings = "'FILL' 1";
           setTimeout(() => icon.classList.remove("scale-110"), 200);
         } else {
-          icon.style.fontVariationSettings = "'FILL' 0";
           icon.classList.remove("scale-110");
         }
 
@@ -313,7 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
     emptyStateEl.className =
       "col-span-full hidden flex flex-col items-center justify-center py-20 text-center transition-opacity duration-300";
     emptyStateEl.innerHTML =
-      '<span class="material-symbols-outlined text-5xl text-outline mb-4">inventory_2</span><p class="text-headline-md font-headline-md text-on-surface">No products found</p><p class="text-body-md font-body-md text-on-surface-variant mt-2">Try adjusting your filters and search again.</p>';
+      '<i data-lucide="package-open" class="w-12 h-12 text-outline mb-4 mx-auto"></i><p class="text-headline-md font-headline-md text-on-surface">No products found</p><p class="text-body-md font-body-md text-on-surface-variant mt-2">Try adjusting your filters and search again.</p>';
     productGrid.appendChild(emptyStateEl);
   }
 
@@ -514,6 +513,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateCounter(pageItems.length, list.length);
     renderPaginationControls(totalPages);
+
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
   }
 
   function applyFilters() {
