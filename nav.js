@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartStyle = currentPath === "cart.html" ? activeClasses : inactiveClasses;
     const contactStyle = currentPath === "ContactUs.html" ? activeClasses : inactiveClasses;
 
-    // 4. Query localStorage for the current authenticated user session
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    // 4. Query storage for the current authenticated user session
+    const currentUser = JSON.parse(localStorage.getItem("currentUser") || sessionStorage.getItem("currentUser") || "null");
     const displayName = currentUser ? (currentUser.name || `${currentUser.firstName || ""} ${currentUser.lastName || ""}`.trim()) : "";
     const displayFirstName = displayName ? displayName.split(" ")[0] : "";
 
@@ -86,9 +86,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                   </div>
                 ` : `
-                  <a href="login.html" class="bg-primary hover:bg-primary/90 text-on-primary font-semibold text-label-md px-5 py-2 rounded-full transition-all duration-300 scale-100 active:scale-95 shadow-sm hover:shadow-md whitespace-nowrap block" title="Sign In" aria-label="Sign In">
+                  <button id="nav-login-btn" class="bg-primary hover:bg-primary/90 text-on-primary font-semibold text-label-md px-5 py-2 rounded-full transition-all duration-300 scale-100 active:scale-95 shadow-sm hover:shadow-md whitespace-nowrap block cursor-pointer" title="Sign In" aria-label="Sign In">
                     Login
-                  </a>
+                  </button>
                 `}
               </div>
 
@@ -144,8 +144,17 @@ document.addEventListener("DOMContentLoaded", () => {
         logoutBtn.addEventListener("click", () => {
           localStorage.removeItem("currentUser");
           localStorage.removeItem("isLoggedIn");
-          window.location.reload();
+          sessionStorage.removeItem("currentUser");
+          sessionStorage.removeItem("isLoggedIn");
+          window.location.replace("home.html");
         });
       }
+    }
+
+    const loginBtn = document.getElementById("nav-login-btn");
+    if (loginBtn) {
+      loginBtn.addEventListener("click", () => {
+        window.location.replace("login.html");
+      });
     }
 });

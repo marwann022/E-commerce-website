@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  if (localStorage.getItem("isLoggedIn") === "true") {
+  if (localStorage.getItem("isLoggedIn") === "true" || sessionStorage.getItem("isLoggedIn") === "true") {
     window.location.replace("home.html");
   }
 
@@ -124,11 +124,21 @@
     if (typeof lucide !== 'undefined') lucide.createIcons();
 
     setTimeout(() => {
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("currentUser", JSON.stringify(foundUser));
+      const rememberMe = document.getElementById("rememberMe");
+      const storage = (rememberMe && rememberMe.checked) ? localStorage : sessionStorage;
+
+      storage.setItem("isLoggedIn", "true");
+      storage.setItem("currentUser", JSON.stringify(foundUser));
       window.location.replace("home.html");
     }, 800);
   });
+
+  const toSignupBtn = document.getElementById("to-signup-btn");
+  if (toSignupBtn) {
+    toSignupBtn.addEventListener("click", () => {
+      window.location.replace("signup.html");
+    });
+  }
 
   if (typeof lucide !== "undefined") {
     lucide.createIcons();

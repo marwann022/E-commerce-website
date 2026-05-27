@@ -1,6 +1,10 @@
 (() => {
   'use strict';
 
+  if (localStorage.getItem("isLoggedIn") === "true" || sessionStorage.getItem("isLoggedIn") === "true") {
+    window.location.replace("home.html");
+  }
+
   // DOM elements from signup.html
   const nameInput = document.getElementById("fullName");
   const emailInput = document.getElementById("email");
@@ -233,6 +237,20 @@
 
   const registerAnotherBtn = document.getElementById("registerAnotherBtn");
   if (registerAnotherBtn) registerAnotherBtn.addEventListener("click", resetForm);
+
+  const toLoginBtn = document.getElementById("to-login-btn");
+  if (toLoginBtn) {
+    toLoginBtn.addEventListener("click", () => {
+      window.location.replace("login.html");
+    });
+  }
+
+  const successLoginBtn = document.getElementById("success-login-btn");
+  if (successLoginBtn) {
+    successLoginBtn.addEventListener("click", () => {
+      window.location.replace("login.html");
+    });
+  }
 
   if (typeof lucide !== "undefined") lucide.createIcons();
 })();
