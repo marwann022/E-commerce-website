@@ -99,7 +99,7 @@
       return;
     }
 
-    const usersJSON = localStorage.getItem("examhub_users");
+    const usersJSON = localStorage.getItem("aura_users");
 
     if (!usersJSON) {
       setError(myEmail, document.getElementById("emailError"), "No account found. Please sign up first.");

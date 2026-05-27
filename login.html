@@ -221,9 +221,11 @@
       <form id="login" novalidate class="space-y-6">
         
         <!-- Status Error Banner -->
-        <div id="form-error-banner" class="hidden bg-red-50 border border-red-200 text-red-700 text-sm font-medium rounded-2xl px-4 py-3 flex items-center gap-3">
-          <i data-lucide="alert-circle" class="w-5 h-5 text-red-600 shrink-0"></i>
-          <span id="error-banner-text">Invalid login credentials.</span>
+        <div id="form-error-banner" class="hidden">
+          <div class="bg-red-50 border border-red-200 text-red-700 text-sm font-medium rounded-2xl px-4 py-3 flex items-center gap-3">
+            <i data-lucide="alert-circle" class="w-5 h-5 text-red-600 shrink-0"></i>
+            <span id="error-banner-text">Invalid login credentials.</span>
+          </div>
         </div>
 
         <!-- Input: Email -->

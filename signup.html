@@ -223,9 +223,11 @@
         <form id="regForm" novalidate class="space-y-5">
           
           <!-- Status Error Banner -->
-          <div id="form-error-banner" class="hidden bg-red-50 border border-red-200 text-red-700 text-sm font-medium rounded-2xl px-4 py-3 flex items-center gap-3">
-            <i data-lucide="alert-circle" class="w-5 h-5 text-red-600 shrink-0"></i>
-            <span id="error-banner-text">Please review form errors.</span>
+          <div id="form-error-banner" class="hidden">
+            <div class="bg-red-50 border border-red-200 text-red-700 text-sm font-medium rounded-2xl px-4 py-3 flex items-center gap-3">
+              <i data-lucide="alert-circle" class="w-5 h-5 text-red-600 shrink-0"></i>
+              <span id="error-banner-text">Please review form errors.</span>
+            </div>
           </div>
 
           <!-- Input: Full Name -->
@@ -363,23 +365,25 @@
       </div>
 
       <!-- Success Card -->
-      <div id="successCard" class="hidden flex flex-col items-center text-center py-4">
-        <div class="w-16 h-16 rounded-full bg-green-50 dark:bg-green-950/20 border border-green-200 flex items-center justify-center mb-5">
-          <i data-lucide="check" class="w-8 h-8 text-green-600"></i>
-        </div>
-        <h2 class="text-2xl font-bold tracking-tight text-on-background mb-2">Registration Successful!</h2>
-        <p class="text-sm text-on-surface-variant mb-8 leading-relaxed">
-          Welcome, <span id="successName" class="font-semibold text-primary"></span>! Your account has been created.
-        </p>
-        
-        <div class="flex flex-col gap-3 w-full">
-          <button id="registerAnotherBtn" class="w-full bg-primary/10 hover:bg-primary/20 text-primary py-3.5 px-6 rounded-2xl font-semibold text-label-sm transition-all cursor-pointer">
-            Register Another Account
-          </button>
-          <a href="login.html" class="w-full bg-primary text-on-primary py-3.5 px-6 rounded-2xl font-semibold text-label-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-primary/20">
-            Sign In Now
-            <i data-lucide="arrow-right" class="w-5 h-5"></i>
-          </a>
+      <div id="successCard" class="hidden">
+        <div class="flex flex-col items-center text-center py-4">
+          <div class="w-16 h-16 rounded-full bg-green-50 dark:bg-green-950/20 border border-green-200 flex items-center justify-center mb-5">
+            <i data-lucide="check" class="w-8 h-8 text-green-600"></i>
+          </div>
+          <h2 class="text-2xl font-bold tracking-tight text-on-background mb-2">Registration Successful!</h2>
+          <p class="text-sm text-on-surface-variant mb-8 leading-relaxed">
+            Welcome, <span id="successName" class="font-semibold text-primary"></span>! Your account has been created.
+          </p>
+          
+          <div class="flex flex-col gap-3 w-full">
+            <button id="registerAnotherBtn" class="w-full bg-primary/10 hover:bg-primary/20 text-primary py-3.5 px-6 rounded-2xl font-semibold text-label-sm transition-all cursor-pointer">
+              Register Another Account
+            </button>
+            <a href="login.html" class="w-full bg-primary text-on-primary py-3.5 px-6 rounded-2xl font-semibold text-label-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-primary/20">
+              Sign In Now
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+          </div>
         </div>
       </div>
 
